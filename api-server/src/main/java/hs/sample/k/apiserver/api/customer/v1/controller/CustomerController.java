@@ -4,6 +4,7 @@ package hs.sample.k.apiserver.api.customer.v1.controller;
 import hs.sample.k.apiserver.api.customer.v1.CustomerApi;
 import hs.sample.k.apiserver.api.customer.v1.service.CustomerProvider;
 import hs.sample.k.apiserver.api.customer.v1.scheme.CustomerInformationScheme;
+import java.net.URISyntaxException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,10 @@ public class CustomerController implements CustomerApi
 
     @Override
     public ResponseEntity<CustomerInformationScheme> customerInformation() {
-        return delegate.inquirySub("id");
+        try {
+            return delegate.inquirySub("id");
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

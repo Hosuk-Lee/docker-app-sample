@@ -1,0 +1,58 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.9.3-eclipse-temurin-17'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
+    stages {
+
+        stage('Initialize') {
+            steps {
+                cleanWs()
+echo "$HOME 현재의 HOME DIRECTORY"
+
+echo "${env.BUILD_ID} 현재의 Build id, BUILD_NUMBER의 식별값"
+echo "${env.BUILD_NUMBER} 현재의 Build number"
+echo "${env.BUILD_TAG} ${JOB_NAME}-${BUILD_NUMBER}로 구성. 리소스 파일 또는 jar 파일 등을 넣어서 쉽게 식별 가능"
+echo "${env.BUILD_URL} 빌드의 결과를 나타내는 URL"
+echo "${env.EXECUTOR_NUMBER} 이 빌드를 수행하는 동일한 컴퓨터의 실행자 중 현재 실행자를 식별하는 고유 번호"
+echo "${env.JAVA_HOME} JDK의 HOME"
+echo "${env.JENKINS_URL} Jenkins의 Full URL"
+echo "${env.NODE_NAME} 현재 빌드가 실행 중인 노드의 이름"
+echo "${env.WORKSPACE}  작업 공간의 절대 경로"
+
+                echo '@@@@ Initialize..'
+                sh "pwd"
+                echo "$PATH"
+                script {
+                    sh "git --version"
+                    sh "which git"
+                    sh "java -version"
+                    sh "which java"
+                    sh "mvn -version"
+                    sh "ls -l"
+                    sh "pwd"
+        //             sh "rm -Rf ./*"
+                    sh "git clone https://github.com/Hosuk-Lee/k-filetransfer-agent.git ."
+        //             //sh "git clone https://github.com/Hosuk-Lee/k-filetransfer-agent.git"
+        //             echo 'Clone..'
+                }
+        //         // git branch: 'master', credentialsId: 'credentail id', url: 'git repo에서 복사한 url'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                //sh 'mvn -B'
+                sh 'pwd'
+                sh 'java -version'
+                sh 'which java'
+                sh 'mvn -version'
+                sh 'which mvn'
+                // sh 'docker version'
+
+            }
+        }
+    }
+}

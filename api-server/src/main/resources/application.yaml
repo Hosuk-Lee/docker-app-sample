@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
   error:
     #에러 발생시 처리 경로, default : /error
     path: /error
@@ -44,3 +44,6 @@ management:
     web:
       exposure:
         include=*:
+
+sample.api:
+  dm-party-reference-data-direcotry: http://localhost:8083
