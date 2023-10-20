@@ -101,7 +101,7 @@ export default {
     async fetchCustomerInfo() {
       try {
         // API 엔드포인트 및 ID를 설정합니다. 예: 1번 고객을 조회하려면 ID를 1로 설정하세요.
-        const apiUrl = 'http://customer.app.local:20010/api/customer/1'; // ID를 원하는 값으로 변경하세요.
+        const apiUrl = 'http://nginx:8080/customer-information'; // ID를 원하는 값으로 변경하세요.
 
         // Axios를 사용하여 API를 호출하고 데이터를 가져옵니다.
         const response = await axios.get(apiUrl);

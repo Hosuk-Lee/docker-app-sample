@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //@RestController(value = "/api/v1")
 @RestController
-@RequestMapping("/hs/springboot/example/api/v1")
+@RequestMapping("/v1")
 @Slf4j
 public class SampleController implements SampleApi
 {
