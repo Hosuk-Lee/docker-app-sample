@@ -6,7 +6,7 @@ import java.util.Objects;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import org.springframework.validation.annotation.Validated;
-import org.threeten.bp.LocalDate;
+//import org.threeten.bp.LocalDate;
 
 /**
  * \&quot;An assertion or statement with regard to a concept, a characteristic.  Examples: Product pricing rules, Customer reference details  A descriptor can be atomic or composed.\&quot; Prospect Management
