@@ -43,7 +43,10 @@ public class InitiateSavingsAccountFacilityRequest {
    * Get savingsAccountFacility
    * @return savingsAccountFacility
   **/
-  @Schema(description = "")
+  @Schema(description =
+          "Fulfill any scheduled and ad-hoc obligations under a service arrangement, most typically for a financial product or facility within Savings Account.<br>"
+                  + "일반적으로 저축 계좌 내의 금융 상품이나 시설에 대한 서비스 계약에 따라 예정된 특별한 의무를 이행해야 합니다."
+  )
   public InitiateSavingsAccountFacilityRequestSavingsAccountFacility getSavingsAccountFacility() {
     return savingsAccountFacility;
   }

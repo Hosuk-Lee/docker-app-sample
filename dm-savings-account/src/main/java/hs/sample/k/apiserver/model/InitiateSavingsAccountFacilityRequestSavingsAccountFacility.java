@@ -102,8 +102,12 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return customerReference
   **/
-  @Schema(description = " ")
-  public String getCustomerReference() {
+   @Schema(
+     description =
+      "Reference to the account primary party/owner" 
+      + "<br/>" + "고객 참조번호"
+   )
+   public String getCustomerReference() {
     return customerReference;
   }
 
@@ -120,7 +124,10 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return bankBranchLocationReference
   **/
-  @Schema(description = " ")
+  @Schema(description =
+          "Bank branch associated with the account for booking purposes"
+                  + "<br>"
+                  + "기장을 목적으로 계정과 연결된 은행 지점")
   public String getBankBranchLocationReference() {
     return bankBranchLocationReference;
   }
@@ -138,7 +145,11 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return accountType
   **/
-  @Schema(description = " ")
+  @Schema(
+          description = "The type of savings account (e.g. checking, student, small business)"
+          ,defaultValue = "normal"
+//          ,examples = {"student","silver"} 안나옴..
+  )
   public String getAccountType() {
     return accountType;
   }
@@ -174,7 +185,10 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return taxReference
   **/
-  @Schema(description = " ")
+  @Schema(description =
+          "Reference identifier linking the account to appropriate tax handling"
+                  + "<br>"
+                  + "계정을 적절한 세금 처리와 연결하는 참조 식별자")
   public String getTaxReference() {
     return taxReference;
   }
@@ -192,7 +206,7 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return entitlementOptionSetting
   **/
-  @Schema(description = " ")
+  @Schema(description = "The setting for the entitlement option")
   public String getEntitlementOptionSetting() {
     return entitlementOptionSetting;
   }
@@ -210,7 +224,7 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return restrictionOptionSetting
   **/
-  @Schema(description = " ")
+  @Schema(description = "The setting for the restriction option")
   public String getRestrictionOptionSetting() {
     return restrictionOptionSetting;
   }
@@ -228,7 +242,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return associations
   **/
-  @Schema(description = " ")
+  @Schema(description = "Definition of the associations to the account"
+          + "<br>"
+          + "계정에 대한 연관성 정의")
   public String getAssociations() {
     return associations;
   }
@@ -246,7 +262,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return associationType
   **/
-  @Schema(description = " ")
+  @Schema(description = "The type of association (e.g. guarantor, co-signer)"
+          + "<br>"
+          + "연결 유형(예: 보증인, 공동 서명인).")
   public String getAssociationType() {
     return associationType;
   }

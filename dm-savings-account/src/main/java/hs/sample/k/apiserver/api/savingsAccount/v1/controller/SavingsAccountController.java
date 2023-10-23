@@ -2,8 +2,7 @@ package hs.sample.k.apiserver.api.savingsAccount.v1.controller;
 
 
 import hs.sample.k.apiserver.api.savingsAccount.v1.SavingsAccountApi;
-import hs.sample.k.apiserver.api.savingsAccount.v1.service.CustomerProvider;
-import hs.sample.k.apiserver.domain.prdd.entity.CRPartyReferenceDataDirectory;
+import hs.sample.k.apiserver.api.savingsAccount.v1.service.SavingsAccountProvider;
 import hs.sample.k.apiserver.model.InitiateSavingsAccountFacilityRequest;
 import hs.sample.k.apiserver.model.InitiateSavingsAccountFacilityResponse;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SavingsAccountController implements SavingsAccountApi
 {
 
-    private final CustomerProvider delegate;
+    private final SavingsAccountProvider delegate;
 
 //    @Override
 //    public ResponseEntity<RegisterPartyReferenceDataDirectoryEntryRequest> registerPartyReferenceDataDirectoryEntry(
@@ -50,6 +49,8 @@ public class SavingsAccountController implements SavingsAccountApi
     @Override
     public ResponseEntity<InitiateSavingsAccountFacilityResponse> initiate(
         InitiateSavingsAccountFacilityRequest body) {
-        return null;
+
+        InitiateSavingsAccountFacilityResponse response = null;
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }
