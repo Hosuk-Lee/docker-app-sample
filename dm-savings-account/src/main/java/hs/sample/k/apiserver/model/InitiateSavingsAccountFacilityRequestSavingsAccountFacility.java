@@ -282,7 +282,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return associationObligationEntitlement
   **/
-  @Schema(description = " ")
+  @Schema(description = "Description of the role, obligations or entitlements of the associated party"
+          + "<br>"
+          + "관련 당사자의 역할, 의무 또는 자격에 대한 설명")
   public String getAssociationObligationEntitlement() {
     return associationObligationEntitlement;
   }
@@ -300,7 +302,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return associationReference
   **/
-  @Schema(description = " ")
+  @Schema(description = "Reference to the associated party"
+          + "<br>"
+          + "참조인 참조번호")
   public String getAssociationReference() {
     return associationReference;
   }
@@ -318,7 +322,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return linkedAccounts
   **/
-  @Schema(description = " ")
+  @Schema(description = "Definition of the associations to the account\n"
+          + "<br>"
+          + "계정에 대한 연관성 정의")
   public String getLinkedAccounts() {
     return linkedAccounts;
   }
@@ -336,7 +342,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return linkType
   **/
-  @Schema(description = " ")
+  @Schema(description = "The type and purpose for the link"
+          + "<br>"
+          + "링크 유형 및 목적")
   public String getLinkType() {
     return linkType;
   }
@@ -354,7 +362,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return accountDetails
   **/
-  @Schema(description = " ")
+  @Schema(description = "Details of the linked account"
+          + "<br>"
+          + "연결된 계정의 세부 정보")
   public String getAccountDetails() {
     return accountDetails;
   }
@@ -372,7 +382,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return positionLimitSettings
   **/
-  @Schema(description = " ")
+  @Schema(description = "Position limits that are maintained by the account\n"
+          + "<br>"
+          + "계정에 의해 유지되는 포지션 제한")
   public String getPositionLimitSettings() {
     return positionLimitSettings;
   }
@@ -390,7 +402,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return dateType
   **/
-  @Schema(description = " ")
+  @Schema(description = "Key dates associated with the account (e.g. opening date, closing date)"
+          + "<br>"
+          + "계정과 연관된 주요 날짜(예: 개설일, 마감일)")
   public String getDateType() {
     return dateType;
   }
@@ -408,7 +422,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return statementsSchedule
   **/
-  @Schema(description = " ")
+  @Schema(description = "The schedule for generating product statements to schedule"
+          + "<br>"
+          + "예약할 제품 문 생성 예약")
   public String getStatementsSchedule() {
     return statementsSchedule;
   }
@@ -426,7 +442,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return statementType
   **/
-  @Schema(description = " ")
+  @Schema(description = "The types of scheduled statement (e.g. balance/mini-statement/annual)"
+          + "<br>"
+          + "예정표 유형(예: 잔액/미니 명세서/연간)")
   public String getStatementType() {
     return statementType;
   }
@@ -444,7 +462,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return statementTransactionType
   **/
-  @Schema(description = " ")
+  @Schema(description = "The types of transactions and transaction details to be included"
+          + "<br>"
+          + "트랜잭션 유형, 거래내역 포함")
   public String getStatementTransactionType() {
     return statementTransactionType;
   }

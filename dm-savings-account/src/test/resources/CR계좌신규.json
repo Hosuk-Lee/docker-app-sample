@@ -1,0 +1,27 @@
+{
+  "SavingsAccountFacility": {
+    "CustomerReference": "1000000001",
+    "BankBranchLocationReference": "0439",
+    "AccountType": "normal",
+    "AccountCurrency": {
+      "Currencycode": "KRW"
+    },
+    "TaxReference": "TODO",
+    "EntitlementOptionSetting": "TODO",
+    "RestrictionOptionSetting": "TODO",
+    "Associations": "",
+    "AssociationType": "string",
+    "AssociationObligationEntitlement": "string",
+    "AssociationReference": "string",
+    "LinkedAccounts": "string",
+    "LinkType": "string",
+    "AccountDetails": "string",
+    "PositionLimitSettings": "string",
+    "DateType": "string",
+    "StatementsSchedule": "string",
+    "StatementType": "string",
+    "StatementTransactionType": "string",
+    "StatementPeriod": "string",
+    "StatementReport": "string"
+  }
+}
