@@ -18,11 +18,31 @@ public class CRSavingsAccountFacilityFactory {
     }
 
     public CRSavingsAccountFacility newCRSavingsAccountFacilityEntity() {
-        InitiateSavingsAccountFacilityRequestSavingsAccountFacility savingsAccountFacility = value.getSavingsAccountFacility();
+        InitiateSavingsAccountFacilityRequestSavingsAccountFacility s = value.getSavingsAccountFacility();
         CRSavingsAccountFacility entity =
                 CRSavingsAccountFacility.builder()
-                        .accountDetails(savingsAccountFacility.getAccountType())
-                        .build();
+                    .customerReference(s.getCustomerReference())
+                    .bankBranchLocationReference(s.getBankBranchLocationReference())
+                    .accountType(s.getAccountType())
+                    .accountCurrency(s.getAccountCurrency().getCurrencycode())
+                    .taxReference(s.getTaxReference())
+                    .entitlementOptionSetting(s.getEntitlementOptionSetting())
+                    .restrictionOptionSetting(s.getRestrictionOptionSetting())
+                    .associations(s.getAssociations())
+                    .associationType(s.getAssociationType())
+                    .associationObligationEntitlement(s.getAssociationObligationEntitlement())
+                    .associationReference(s.getAssociationReference())
+                    .linkedAccounts(s.getLinkedAccounts())
+                    .linkType(s.getLinkType())
+                    .accountDetails(s.getAccountDetails())
+                    .positionLimitSettings(s.getPositionLimitSettings())
+                    .dateType(s.getDateType())
+                    .statementsSchedule(s.getStatementsSchedule())
+                    .statementType(s.getStatementType())
+                    .statementTransactionType(s.getStatementTransactionType())
+                    .statementPeriod(s.getStatementPeriod())
+                    .statementReport(s.getStatementReport())
+                    .build();
 
         return entity;
     }

@@ -3,6 +3,7 @@ package hs.sample.k.apiserver.api.savingsAccount.v1;
 import hs.sample.k.apiserver.model.HTTPError;
 import hs.sample.k.apiserver.model.InitiateSavingsAccountFacilityRequest;
 import hs.sample.k.apiserver.model.InitiateSavingsAccountFacilityResponse;
+import hs.sample.k.apiserver.model.RetrieveSavingsAccountFacilityResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -13,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,5 +68,25 @@ public interface SavingsAccountApi {
 //            @RequestBody(required = false)
 //                RegisterPartyReferenceDataDirectoryEntryRequest registerPartyReferenceDataDirectoryEntryRequest
 //    );
+
+    @Operation(summary = "ReCR Retrieve information about a savings account - either standard canned reports or selected instance attribute values", description = "ReCR Retrieve information about a savings account - either standard canned reports or selected instance attribute values", tags={ "CR - SavingsAccountFacility" })
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "RetrieveSavingsAccountFacilityResponse", content = @Content(mediaType = "application/json", schema = @Schema(implementation = RetrieveSavingsAccountFacilityResponse.class))),
+
+        @ApiResponse(responseCode = "400", description = "BadRequest", content = @Content(mediaType = "application/json", schema = @Schema(implementation = HTTPError.class))),
+
+        @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content(mediaType = "application/json", schema = @Schema(implementation = HTTPError.class))),
+
+        @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content(mediaType = "application/json", schema = @Schema(implementation = HTTPError.class))),
+
+        @ApiResponse(responseCode = "404", description = "NotFound", content = @Content(mediaType = "application/json", schema = @Schema(implementation = HTTPError.class))),
+
+        @ApiResponse(responseCode = "429", description = "TooManyRequests", content = @Content(mediaType = "application/json", schema = @Schema(implementation = HTTPError.class))),
+
+        @ApiResponse(responseCode = "500", description = "InternalServerError", content = @Content(mediaType = "application/json", schema = @Schema(implementation = HTTPError.class))) })
+    @RequestMapping(value = "/SavingsAccount/{savingsaccountid}/Retrieve",
+        produces = { "application/json" },
+        method = RequestMethod.GET)
+    ResponseEntity<RetrieveSavingsAccountFacilityResponse> retrieve(@Parameter(in = ParameterIn.PATH, description = "", required=true, schema=@Schema()) @PathVariable("savingsaccountid") String savingsaccountid);
 
 }

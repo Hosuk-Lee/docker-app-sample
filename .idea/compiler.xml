@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
@@ -18,5 +19,8 @@
         <module name="dm-savings-account" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dm-saving-account" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -206,7 +206,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return entitlementOptionSetting
   **/
-  @Schema(description = "The setting for the entitlement option")
+  @Schema(description = "The setting for the entitlement option"
+      + "<br>"
+      + "사용 권한 옵션에 대한 설정")
   public String getEntitlementOptionSetting() {
     return entitlementOptionSetting;
   }
@@ -224,7 +226,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return restrictionOptionSetting
   **/
-  @Schema(description = "The setting for the restriction option")
+  @Schema(description = "The setting for the restriction option"
+      + "<br>"
+      + "제한 옵션 설정")
   public String getRestrictionOptionSetting() {
     return restrictionOptionSetting;
   }
@@ -482,7 +486,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return statementPeriod
   **/
-  @Schema(description = " ")
+  @Schema(description = "The reporting period covered by the statement"
+      + "<br>"
+      + "명세서에서 다루는 보고기간")
   public String getStatementPeriod() {
     return statementPeriod;
   }
@@ -500,7 +506,9 @@ public class InitiateSavingsAccountFacilityRequestSavingsAccountFacility {
    *  
    * @return statementReport
   **/
-  @Schema(description = " ")
+  @Schema(description = "The statement content"
+      + "<br>"
+      + "전표내용")
   public String getStatementReport() {
     return statementReport;
   }

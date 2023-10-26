@@ -2,6 +2,7 @@ package hs.sample.k.apiserver.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.time.LocalDate;
 import java.util.Objects;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
