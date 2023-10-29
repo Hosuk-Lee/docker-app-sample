@@ -18,7 +18,15 @@ public class CRSavingsAccountFacilityFactory {
     }
 
     public CRSavingsAccountFacility newCRSavingsAccountFacilityEntity() {
+
         InitiateSavingsAccountFacilityRequestSavingsAccountFacility s = value.getSavingsAccountFacility();
+
+        String accountNumber =
+            s.getBankBranchLocationReference()
+            +"03"
+            +"04"
+            ;
+
         CRSavingsAccountFacility entity =
                 CRSavingsAccountFacility.builder()
                     .customerReference(s.getCustomerReference())

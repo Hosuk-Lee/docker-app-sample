@@ -16,12 +16,12 @@
     "LinkedAccounts": "TODO",
     "LinkType": "TODO",
     "AccountDetails": "연결된 계정의 세부 정보",
-    "PositionLimitSettings": "string",
+    "PositionLimitSettings": "TODO",
     "DateType": "개설일/마감일",
-    "StatementsSchedule": "string",
-    "StatementType": "string",
-    "StatementTransactionType": "string",
-    "StatementPeriod": "string",
-    "StatementReport": "string"
+    "StatementsSchedule": "TODO",
+    "StatementType": "TODO",
+    "StatementTransactionType": "TODO",
+    "StatementPeriod": "TODO",
+    "StatementReport": "TODO"
   }
 }
