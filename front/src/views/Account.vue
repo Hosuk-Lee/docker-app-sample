@@ -4,6 +4,7 @@
       <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">Content</span>
     </a>
+    <button class="btn btn-primary" @click="fetchAccountInfo">Fetch Account Info</button>
     <h2>Account Details</h2>
 
     <!-- 계좌 상세 정보 -->
@@ -108,7 +109,30 @@ export default {
         loanInterestRate: "5%"
       }
     };
+  },
+  methods: {
+    async fetchAccountInfo(button) {
+      try {
+        // Disable the button while the API call is in progress.
+        button.disabled = true;
+
+        // API 엔드포인트를 설정합니다.
+        const apiUrl = 'http://nginx:8080/my-account-detail';
+
+        // Axios를 사용하여 API를 호출하고 데이터를 가져옵니다.
+        const response = await axios.get(apiUrl);
+
+        // API에서 받아온 데이터를 accountInfo에 할당합니다.
+        this.accountInfo = response.data;
+
+        // API 호출이 완료되면 버튼을 활성화합니다.
+        button.disabled = false;
+      } catch (error) {
+        console.error('API 호출 중 오류 발생:', error);
+      }
+    }
   }
+
 };
 </script>
 

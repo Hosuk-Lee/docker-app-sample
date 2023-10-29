@@ -14,7 +14,7 @@ public interface MyAccountDetailApi {
 //    public OneProvider getDelegate();
 
     /**
-     * GET /customer-information
+     * GET /customer-account-detail
      *
      * @return 조회 생성 응답 (status code 200)
      */

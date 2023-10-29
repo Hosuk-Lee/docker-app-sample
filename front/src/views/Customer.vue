@@ -4,6 +4,11 @@
       <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">Content</span>
     </a>
+    <div class="group">
+      <h3>Customer ID</h3>
+      <input type="text" id="customerId" v-model="customerId" class="form-control" />
+    </div>
+    <button class="btn btn-primary" @click="fetchCustomerInfo">Fetch Customer Info</button>
     <h2>Customer Information</h2>
 
     <!-- 기본정보 그룹 -->
@@ -90,29 +95,40 @@ export default {
         receivePhoneCalls: false,
         receiveSMS: true,
         receiveEmail: false
-      }
+      },
+      customerId: null
+
     };
   },
   mounted() {
     // Vue 컴포넌트가 로드될 때 API를 호출하도록 mounted 훅을 사용합니다.
-    this.fetchCustomerInfo();
+    // this.fetchCustomerInfo();
   },
   methods: {
-    async fetchCustomerInfo() {
+    async fetchCustomerInfo(button) {
       try {
+        // Disable the button while the API call is in progress.
+        console.log(button);
+        button.disabled = true;
+
         // API 엔드포인트 및 ID를 설정합니다. 예: 1번 고객을 조회하려면 ID를 1로 설정하세요.
-        const apiUrl = 'http://nginx:8080/customer-information'; // ID를 원하는 값으로 변경하세요.
+        // const apiUrl = 'http://nginx:80/api/customer-information/${this.customerId}'; // ID를 원하는 값으로 변경하세요.
+        const apiUrl = 'http://127.0.0.1:80/api/customer-information/${this.customerId}'; // ID를 원하는 값으로 변경하세요.
 
         // Axios를 사용하여 API를 호출하고 데이터를 가져옵니다.
         const response = await axios.get(apiUrl);
 
         // API에서 받아온 데이터를 customerInfo에 할당합니다.
         this.customerInfo = response.data;
+
+        // API 호출이 완료되면 버튼을 활성화합니다.
+        button.disabled = false;
       } catch (error) {
         console.error('API 호출 중 오류 발생:', error);
       }
     }
   }
+
 
 };
 </script>

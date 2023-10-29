@@ -40,7 +40,7 @@ public interface SavingsAccountApi {
 
     @Operation(summary = "InCR Initiate A new savings account", description = "InCR Initiate A new savings account", tags={ "CR - SavingsAccountFacility" })
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "InitiateSavingsAccountFacilityResponse", content = @Content(mediaType = "application/json", schema = @Schema(implementation = InitiateSavingsAccountFacilityResponse.class))),
+        @ApiResponse(responseCode = "201", description = "InitiateSavingsAccountFacilityResponse", content = @Content(mediaType = "application/json", schema = @Schema(implementation = InitiateSavingsAccountFacilityResponse.class))),
 
         @ApiResponse(responseCode = "400", description = "BadRequest", content = @Content(mediaType = "application/json", schema = @Schema(implementation = HTTPError.class))),
 
