@@ -87,6 +87,18 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
+        <executions>
+          <execution>
+            <goals>
+<!--              <goal>build-image-no-fork</goal>-->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>com.devskiller.jpa2ddl</groupId>
         <artifactId>jpa2ddl-maven-plugin</artifactId>
         <version>0.9.12</version>
