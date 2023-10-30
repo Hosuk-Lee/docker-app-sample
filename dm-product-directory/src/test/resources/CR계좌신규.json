@@ -1,0 +1,27 @@
+{
+  "SavingsAccountFacility": {
+    "CustomerReference": "1000000001",
+    "BankBranchLocationReference": "0439",
+    "AccountType": "normal",
+    "AccountCurrency": {
+      "Currencycode": "KRW"
+    },
+    "TaxReference": "TODO",
+    "EntitlementOptionSetting": "TODO",
+    "RestrictionOptionSetting": "TODO",
+    "Associations": "TODO",
+    "AssociationType": "TODO",
+    "AssociationObligationEntitlement": "TODO",
+    "AssociationReference": "TODO",
+    "LinkedAccounts": "TODO",
+    "LinkType": "TODO",
+    "AccountDetails": "연결된 계정의 세부 정보",
+    "PositionLimitSettings": "TODO",
+    "DateType": "개설일/마감일",
+    "StatementsSchedule": "TODO",
+    "StatementType": "TODO",
+    "StatementTransactionType": "TODO",
+    "StatementPeriod": "TODO",
+    "StatementReport": "TODO"
+  }
+}

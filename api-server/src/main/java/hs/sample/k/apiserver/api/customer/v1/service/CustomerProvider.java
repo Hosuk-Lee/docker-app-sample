@@ -64,7 +64,7 @@ public class CustomerProvider {
         if (response.getStatusCode().is2xxSuccessful()) {
             // 응답이 성공적이면 사용자 목록을 가져옵니다.
             Object body = response.getBody();
-            log.info("bopy:{}",body);
+            log.info("body:{}",body);
         } else {
             // 응답이 실패적이면 처리합니다.
             log.error("error:{}",response);

@@ -22,6 +22,7 @@ public class CustomerController implements CustomerApi
     @Override
     public ResponseEntity<CustomerInformationScheme> customerInformation(String customerId) {
         try {
+            log.info("customerId {}", customerId);
             return delegate.inquirySub("id");
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);

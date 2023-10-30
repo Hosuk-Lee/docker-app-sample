@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/dm-saving-account/pom.xml" />
         <option value="$PROJECT_DIR$/dm-savings-account/pom.xml" />
+        <option value="$PROJECT_DIR$/dm-product-directory/pom.xml" />
       </list>
     </option>
   </component>

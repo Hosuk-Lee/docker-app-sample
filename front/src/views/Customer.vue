@@ -6,7 +6,7 @@
     </a>
     <div class="group">
       <h3>Customer ID</h3>
-      <input type="text" id="customerId" v-model="customerId" class="form-control" />
+      <input type="text" id="customerId" v-model="req.customerId" class="form-control" />
     </div>
     <button class="btn btn-primary" @click="fetchCustomerInfo">Fetch Customer Info</button>
     <h2>Customer Information</h2>
@@ -96,7 +96,9 @@ export default {
         receiveSMS: true,
         receiveEmail: false
       },
-      customerId: null
+      req: {
+        customerId: null
+      }
 
     };
   },
@@ -109,11 +111,17 @@ export default {
       try {
         // Disable the button while the API call is in progress.
         console.log(button);
+        //console.log('${this.req.customerId}');
+        console.log(this.req);
+        console.log(this.req.customerId);
+        console.log('뭐야이거 ${this.req}');
+        console.log("뭐야이거 ${this.req}");
+
         button.disabled = true;
 
         // API 엔드포인트 및 ID를 설정합니다. 예: 1번 고객을 조회하려면 ID를 1로 설정하세요.
-        // const apiUrl = 'http://nginx:80/api/customer-information/${this.customerId}'; // ID를 원하는 값으로 변경하세요.
-        const apiUrl = 'http://127.0.0.1:80/api/customer-information/${this.customerId}'; // ID를 원하는 값으로 변경하세요.
+        // const apiUrl = 'http://nginx:80/api/customer-information/${this.req.customerId}'; // ID를 원하는 값으로 변경하세요.
+        const apiUrl = 'http://127.0.0.1:80/api/customer-information/' + this.req.customerId; // ID를 원하는 값으로 변경하세요.
 
         // Axios를 사용하여 API를 호출하고 데이터를 가져옵니다.
         const response = await axios.get(apiUrl);
