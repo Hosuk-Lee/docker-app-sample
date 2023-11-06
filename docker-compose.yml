@@ -11,8 +11,13 @@ services:
     image: hosuk/project-k-front
     expose:
       - "80"
-
   apiserver:
     image: hosuk/project-k-apiserver
-    ports:
-      - "8080:8080"  # API 서버의 포트를 설정하세요
+    expose:
+      - "8080"
+    #ports:
+    #  - "8080:8080"  # API 서버의 포트를 설정하세요
+  dm-savings-account:
+    image: hosuk/project-k-apiserver
+    expose:
+      - "8080"
