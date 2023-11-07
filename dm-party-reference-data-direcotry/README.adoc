@@ -1,0 +1,20 @@
+= AsciiDoc Article Title
+:toc:
+
+== Docker Build
+
+Gradle Build *&* Docker Build
+
+=== Command
+
+.Unordered list title
+* list item 1
+** nested list item
+** nested list item
+
+This is a paragraph.
+
+.Example block title
+====
+Content in an example block is subject to normal substitutions.
+====
