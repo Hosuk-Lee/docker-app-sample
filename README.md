@@ -2,7 +2,7 @@
 Docker Environment-Based Applications
 
 
-./docker-compose -f docker-compose.yml up -d
+docker-compose -f docker-compose.yml up -d
 
 <br>
 docker-compose restart front
