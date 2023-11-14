@@ -96,6 +96,21 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>hs.sample.k.apiserver.SavingsAccountApplication</mainClass>
+          <layout>JAR</layout>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>com.devskiller.jpa2ddl</groupId>
         <artifactId>jpa2ddl-maven-plugin</artifactId>
         <version>0.9.12</version>

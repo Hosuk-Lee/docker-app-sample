@@ -17,6 +17,9 @@ EXPOSE 8080
 # VOLUME /tmp
 # ARG TARGET_DIR=/workdir/target
 # COPY --from=builder ${TARGET_DIR}/*-SNAPSHOT.jar app.jar
-COPY --from=builder /app/target/*-SNAPSHOT.jar app.jar
+COPY --from=builder /app/target/*-SNAPSHOT.jar /app/app.jar
 # CMD ["java", "-jar", "app.jar"]
-ENTRYPOINT ["java", "-jar", "app.jar"]
+#ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+CMD ["java", "-version"]
+CMD ["ls", "-al", "app.jar"]
+CMD ["java", "-jar", "app.jar"]
