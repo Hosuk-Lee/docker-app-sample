@@ -4,7 +4,7 @@ WORKDIR /app
 # Maven POM 파일 복사
 # COPY pom.xml /workdir/pom.xml
 COPY pom.xml .
-RUN mvn dependency:go-offline
+# RUN mvn dependency:go-offline
 # 소스 디렉토리 복사
 COPY src/ /app/src/
 RUN mvn package

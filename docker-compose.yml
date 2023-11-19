@@ -21,3 +21,7 @@ services:
     image: hosuk/project-k-dm-savings-account
     expose:
       - "8080"
+  dm-party-reference-data-direcotry:
+    image: hosuk/project-k-dm-party-reference-data-direcotry
+    expose:
+      - "8080"

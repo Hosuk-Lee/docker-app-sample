@@ -5,6 +5,8 @@ import hs.sample.k.apiserver.domain.prdd.entity.CRPartyReferenceDataDirectory;
 import hs.sample.k.apiserver.domain.prdd.facory.CRPartyReferenceDataDirectoryFactory;
 import hs.sample.k.apiserver.domain.prdd.repository.CRPartyReferenceDataDirectoryReposiroty;
 import hs.sample.k.apiserver.domain.prdd.service.CreateNewInstacePrdd;
+import hs.sample.k.apiserver.global.response.exception.BusinessException;
+import hs.sample.k.apiserver.global.response.exception.ErrorCode;
 import hs.sample.k.apiserver.model.RegisterPartyReferenceDataDirectoryEntryRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +34,9 @@ public class CustomerProvider {
 
     public CRPartyReferenceDataDirectory retrive(String partyreferencedatadirectoryid) {
         CRPartyReferenceDataDirectory crPartyReferenceDataDirectory = repo.findById(
-                Long.valueOf(partyreferencedatadirectoryid)).orElseThrow();
+                Long.valueOf(partyreferencedatadirectoryid)).orElseThrow(
+            () -> new BusinessException(ErrorCode.NOT_FOUND_MASTER, "여기서 오류를 냅니다.")
+        );
         return crPartyReferenceDataDirectory;
     }
 

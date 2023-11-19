@@ -1,6 +1,5 @@
 package hs.sample.k.apiserver.global.response.advice;
 
-import hs.sample.k.apiserver.global.response.CommonExternalResponse;
 import hs.sample.k.apiserver.global.response.exception.BusinessException;
 import hs.sample.k.apiserver.global.response.exception.ErrorCode;
 import hs.sample.k.apiserver.model.HTTPError;

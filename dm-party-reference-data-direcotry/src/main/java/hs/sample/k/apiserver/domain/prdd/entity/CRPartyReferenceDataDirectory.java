@@ -1,7 +1,9 @@
 package hs.sample.k.apiserver.domain.prdd.entity;
 
 import hs.sample.k.apiserver.domain.config.RootEntityBase;
+import hs.sample.k.apiserver.model.Datetime;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -28,4 +30,6 @@ public class CRPartyReferenceDataDirectory extends RootEntityBase {
     @Column
     private String directoryEntryType;
 
+    @Embedded
+    private DatetimeEntity directoryEntryDate;
 }

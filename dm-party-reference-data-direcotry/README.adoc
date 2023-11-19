@@ -8,9 +8,10 @@ Gradle Build *&* Docker Build
 === Command
 
 .Unordered list title
-* list item 1
-** nested list item
-** nested list item
+* Basic Step
+** ./gradlew clean build
+** docker rmi hosuk/project-k-dm-party-reference-data-direcotry
+** docker build -t hosuk/project-k-dm-party-reference-data-direcotry .
 
 This is a paragraph.
 

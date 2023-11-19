@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8080
   error:
     #에러 발생시 처리 경로, default : /error
     path: /error
