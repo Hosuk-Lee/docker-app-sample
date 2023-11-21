@@ -22,12 +22,85 @@ import './assets/js/color-modes'
     <div id="k-content" style="overflow-y: scroll">
         <RouterView />
     </div>
+    <!-- 성공 토스트 -->
+        <div
+          id="successToast"
+          class="toast align-items-center text-white bg-success position-fixed top-0 end-0 m-3"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+          v-if="successMessage"
+        >
+          <div class="d-flex">
+            <div class="toast-body">
+              {{ successMessage }}
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white me-2 m-auto"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+              @click="clearMessages"
+            ></button>
+          </div>
+        </div>
+
+        <!-- 오류 토스트 -->
+        <div
+          id="errorToast"
+          class="toast align-items-center text-white bg-danger position-fixed top-0 end-0 m-3"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+          v-if="errorMessage"
+        >
+          <div class="d-flex">
+            <div class="toast-body">
+              {{ errorMessage }}
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white me-2 m-auto"
+              data-bs-dismiss="toast"
+              aria-label="Close"
+              @click="clearMessages"
+            ></button>
+          </div>
+        </div>
+
     <div class="b-example-divider b-example-vr"></div>
+
+
 
 
   </main>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      // ... (기존 데이터) ...
+      successMessage: null,
+      errorMessage: null,
+    };
+  },
+  methods: {
+    // ... (기존 메서드) ...
+    clearMessages() {
+      // 메시지 지우기
+      this.successMessage = null;
+      this.errorMessage = null;
+    },
+    showToast(message, type) {
+      // 주어진 유형(success 또는 error)의 메시지를 표시하고 3초 후에 자동으로 숨김
+      this[type + 'Message'] = message;
+      setTimeout(() => {
+        this.clearMessages();
+      }, 3000); // 3초 후에 자동 숨김
+    },
+  },
+};
+</script>
 <style>
 main {
   height: 100vh;

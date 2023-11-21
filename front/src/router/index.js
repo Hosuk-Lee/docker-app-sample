@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Customer from '../views/Customer.vue'
+import CustomerInquiry from '../views/customer/CustomerInquiry.vue'
+import CustomerRegister from '../views/customer/CustomerRegister.vue'
 import Account from '../views/Account.vue'
 import TransactionInquiry from '../views/TransactionInquiry.vue'
 
@@ -13,6 +15,16 @@ const routes = [
     path: '/customer',
     name: 'Customer',
     component: Customer
+  },
+  {
+    path: '/customer/inquiry',
+    name: 'CustomerInquiry',
+    component: CustomerInquiry
+  },
+  {
+    path: '/customer/register',
+    name: 'CustomerRegister',
+    component: CustomerRegister
   },
   {
     path: '/account',

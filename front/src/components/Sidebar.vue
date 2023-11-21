@@ -41,6 +41,18 @@
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
             <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Home</a></li>
             <li><router-link to="/customer" class="nav-link">Customer</router-link></li>
+            <!-- Customer Section -->
+            <li class="mb-1">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#customer-collapse" aria-expanded="true">
+                Customer
+              </button>
+              <div class="collapse show" id="customer-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><router-link to="/customer/inquiry" class="nav-link">Customer Inquiry</router-link></li>
+                  <li><router-link to="/customer/register" class="nav-link">Customer Register</router-link></li>
+                </ul>
+              </div>
+            </li>
             <li><router-link to="/account" class="nav-link">Account</router-link></li>
             <li><router-link to="/transaction_inquiry" class="nav-link">Transaction Inquiry</router-link></li>
           </ul>
