@@ -1,4 +1,6 @@
 <template>
+  <button @click="showToast('Hello, world!', 'info')">Show Toast</button>
+
   <div class="flex-shrink-0 p-3">
     <a href="/customer" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
       <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
@@ -77,7 +79,10 @@
 </template>
 
 <script>
+//import BootstrapToast from '@/components/module/BootstrapToast';
 import axios from 'axios';
+import BootstrapToast from '@/components/module/BootstrapToast.vue'
+
 
 export default {
   data() {
@@ -107,6 +112,13 @@ export default {
     // this.fetchCustomerInfo();
   },
   methods: {
+    showToast(message, type = 'success') {
+          const toastComponent = new Vue({
+            render: (h) => h(BootstrapToast, { props: { message, type } }),
+          }).$mount();
+
+          document.body.appendChild(toastComponent.$el);
+    },
     async fetchCustomerInfo(button) {
       try {
         // Disable the button while the API call is in progress.
