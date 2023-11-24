@@ -24,7 +24,7 @@
           <label for="homeAddress">Home Address:</label>
           <input type="text" id="homeAddress" v-model="customerInfo.homeAddress" class="form-control" />
         </div>
-        <button @click="nextGroup('work')">다음</button>
+        <button @click="nextGroup('work')" class="btn btn-primary">다음</button>
       </div>
 
       <!-- 직장정보 그룹 -->
@@ -46,7 +46,7 @@
           <label for="workAddress">Work Address:</label>
           <input type="text" id="workAddress" v-model="customerInfo.workAddress" class="form-control" />
         </div>
-        <button @click="nextGroup('other')">다음</button>
+        <button @click="nextGroup('other')" class="btn btn-primary">다음</button>
       </div>
 
       <!-- 기타정보 그룹 -->
@@ -68,7 +68,7 @@
           <label>Receive Email:</label>
           <input type="checkbox" v-model="customerInfo.receiveEmail" />
         </div>
-        <button @click="submitForm">등록</button>
+        <button @click="submitForm" class="btn btn-primary">등록</button>
       </div>
       <!-- 성공 알림 -->
       <div v-if="successMessage" class="alert alert-success" role="alert">
@@ -116,6 +116,8 @@ export default {
     },
     validateCurrentGroup() {
       // 각 그룹의 유효성 검사를 수행하고 유효한 경우에만 true 반환
+      console.log("debug",this.currentGroup)
+      // this.setFocus('')
       // 예를 들어, 필수 필드가 모두 채워져 있는지 확인할 수 있습니다.
       return true; // 실제로는 유효성 검사를 구현해야 합니다.
     },
