@@ -1,6 +1,7 @@
 package hs.sample.k.apiserver.api.customer.v1;
 
 import hs.sample.k.apiserver.api.customer.v1.scheme.CustomerInformationScheme;
+import hs.sample.k.apiserver.model.ExecutePartyReferenceDataDirectoryEntryRequest;
 import hs.sample.k.apiserver.model.RegisterPartyReferenceDataDirectoryEntryRequest;
 import hs.sample.k.apiserver.model.RetrievePartyReferenceDataDirectoryEntryResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -61,5 +62,22 @@ public interface CustomerApi {
             @PathVariable("partyreferencedatadirectoryid")
             String partyreferencedatadirectoryid
     );
+
+    @Operation(summary = "PartyReferenceDataDirectory API", operationId = "partyReferenceDataDirectoryEntryRegister", description = "UpBQ Update details about a reference entry for the customer", tags={ "API", "Sample" })
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = ""),  })
+    @PostMapping(
+        value = "/PartyReferenceDataDirectory/{partyreferencedatadirectoryid}/Execute",
+        produces = { "application/json" },
+        consumes = { "application/json" }
+    )
+    public ResponseEntity<ExecutePartyReferenceDataDirectoryEntryRequest> executePartyReferenceDataDirectoryEntry(
+        @Parameter(description = "")
+        @Valid
+        @RequestBody(required = false)
+        ExecutePartyReferenceDataDirectoryEntryRequest executePartyReferenceDataDirectoryEntryRequest
+    );
+
+
 
 }

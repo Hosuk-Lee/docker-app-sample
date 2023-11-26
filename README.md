@@ -18,7 +18,7 @@ Docker Image Build
 <li>
     [api-server]<br>
     <ul>
-        <li>api-server/gradlew clean build -api-server</li>
+        <li>api-server/gradlew clean build -p api-server</li>
         <li>docker rmi hosuk/project-k-apiserver</li>
         <li>docker build -t hosuk/project-k-apiserver api-server</li>
     </ul>

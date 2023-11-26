@@ -1,11 +1,14 @@
 package hs.sample.k.apiserver.api.customer.v1.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import hs.sample.k.apiserver.api.customer.v1.CustomerApi;
 import hs.sample.k.apiserver.api.customer.v1.service.CustomerProvider;
 import hs.sample.k.apiserver.api.customer.v1.scheme.CustomerInformationScheme;
 import hs.sample.k.apiserver.domain.prdd.entity.CRPartyReferenceDataDirectory;
 import hs.sample.k.apiserver.model.Directoryentrydatetypevalues;
+import hs.sample.k.apiserver.model.ExecutePartyReferenceDataDirectoryEntryRequest;
 import hs.sample.k.apiserver.model.RegisterPartyReferenceDataDirectoryEntryRequest;
 import hs.sample.k.apiserver.model.RegisterPartyReferenceDataDirectoryEntryRequestPartyReferenceDataDirectoryEntry;
 import hs.sample.k.apiserver.model.RetrievePartyReferenceDataDirectoryEntryResponse;
@@ -65,6 +68,19 @@ public class CustomerController implements CustomerApi
 
         response.setPartyReferenceDataDirectoryEntry(registerPartyReferenceDataDirectoryEntryRequestPartyReferenceDataDirectoryEntry);
         return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<ExecutePartyReferenceDataDirectoryEntryRequest> executePartyReferenceDataDirectoryEntry(
+        ExecutePartyReferenceDataDirectoryEntryRequest executePartyReferenceDataDirectoryEntryRequest) {
+        ObjectMapper om = new ObjectMapper();
+        try {
+            log.info("DEBUG :: {}", om.writerWithDefaultPrettyPrinter().writeValueAsString(executePartyReferenceDataDirectoryEntryRequest));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        return ResponseEntity.ok(executePartyReferenceDataDirectoryEntryRequest);
     }
 
 }

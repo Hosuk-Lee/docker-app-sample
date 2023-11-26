@@ -59,6 +59,10 @@
     <div class="group">
       <h3>Other Information</h3>
       <div class="form-group">
+        <label>Receive Marketing:</label>
+        <input type="checkbox" v-model="customerInfo.receiveMarketing" />
+      </div>
+      <div class="form-group">
         <label>Receive Mail:</label>
         <input type="checkbox" v-model="customerInfo.receiveMail" />
       </div>
@@ -70,18 +74,13 @@
         <label>Receive SMS:</label>
         <input type="checkbox" v-model="customerInfo.receiveSMS" />
       </div>
-      <div class="form-group">
-        <label>Receive Email:</label>
-        <input type="checkbox" v-model="customerInfo.receiveEmail" />
-      </div>
+      
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-
-//import BootstrapToast from '@/components/module/BootstrapToast';
 import axios from 'axios';
 import AppAlert from '@/components/AppAlert.vue';
 
@@ -117,34 +116,26 @@ const vAlert = (message, type = 'error') => {
   }, 2000);
 }
 
-    // const showToast = (message, type = 'success') => {
-    //   const toastComponent = createApp(BootstrapToast, { message, type });
-    //   const toastVm = toastComponent.mount();
-    //   document.body.appendChild(toastVm.$el);
-    // };
-
     const fetchCustomerInfo = async (button) => {
       try {
-        console.log(button);
-        console.log(req.value);
-        console.log(req.value.customerId);
-        console.log(`뭐야이거 ${req.value}`);
-        console.log(`뭐야이거 ${req.value}`);
         button.disabled = true;
         const apiUrl = `http://127.0.0.1:80/api/customer-information/${req.value.customerId}`;
         const response = await axios.get(apiUrl);
+        console.log('resonse',response);
         customerInfo.value = response.data;
         button.disabled = false;
       } catch (error) {
         console.error('API 호출 중 오류 발생:', error);
+        vAlert("API 호출오류 ["+error.code +"]["+error.message+"]", 'error');
+
       }
     };
 
     onMounted(() => {
       // 컴포넌트가 마운트될 때 API를 호출하도록 변경
-      // vAlert("onMounted() 함수 :: 화면로딩1", 'info');
+      vAlert("onMounted() 함수 :: 화면로딩1", 'info');
       // vAlert("onMounted() 함수 :: 화면로딩2", 'success');
-      vAlert("onMounted() 함수 :: 화면로딩3", 'error');
+      // vAlert("onMounted() 함수 :: 화면로딩3", 'error');
       // fetchCustomerInfo();
     });
 

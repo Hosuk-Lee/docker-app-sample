@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Setter;
 
 @Setter
-public class CustomerInformationScheme {
+public class CustomerInformationSchema {
 
     @Schema(description = "Customer's name")
     @JsonProperty("name")

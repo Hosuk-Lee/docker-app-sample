@@ -257,7 +257,7 @@ public class ExecutePartyReferenceDataDirectoryEntryRequestReference   {
    *  
    * @return eMailAddress
    **/
-  @Schema(description = " ")
+//  @Schema(description = " ")
   
     public String getEMailAddress() {
     return eMailAddress;

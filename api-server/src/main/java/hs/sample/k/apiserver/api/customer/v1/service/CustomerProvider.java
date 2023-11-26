@@ -1,12 +1,9 @@
 package hs.sample.k.apiserver.api.customer.v1.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import hs.sample.k.apiserver.api.customer.v1.scheme.CustomerInformationScheme;
+import hs.sample.k.apiserver.api.customer.v1.scheme.CustomerInformationSchema;
 import hs.sample.k.apiserver.service.SampleApiService;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
-import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,12 +24,11 @@ public class CustomerProvider {
     @Value("${sample.api.dm-party-reference-data-direcotry}")
     private String url;
 
-    public ResponseEntity<CustomerInformationScheme> inquirySub(String id)
-        throws URISyntaxException {
+    public ResponseEntity<CustomerInformationSchema> inquirySub(String id) {
 
         inq();
 
-        CustomerInformationScheme customerInfo = new CustomerInformationScheme();
+        CustomerInformationSchema customerInfo = new CustomerInformationSchema();
         customerInfo.setName("John Doe");
         customerInfo.setPhone("123-456-7890");
         customerInfo.setEmail("john@example.com");
@@ -48,7 +44,7 @@ public class CustomerProvider {
         return ResponseEntity.status(HttpStatus.OK).body(customerInfo);
     }
 
-    public void inq() throws URISyntaxException {
+    public void inq() {
 //        URI uri = URI.create();
         log.info("url:{}",url);
 //        URI uri = new URI("http", null,url,8083,"/PartyReferenceDataDirectory/1/Retrieve", null, null);
@@ -71,4 +67,15 @@ public class CustomerProvider {
         }
     }
 
+    public ResponseEntity<CustomerInformationSchema> customerRegister(CustomerInformationSchema customerInformationSchema) {
+        URI uri = URI.create(url + "/PartyReferenceDataDirectory/1/Retrieve");
+        ResponseEntity<Object> response = restTemplate.exchange(
+//            "http://example.com/api/v1/users",
+            uri,
+            HttpMethod.POST,
+            HttpEntity.EMPTY,
+            Object.class
+        );
+        return null;
+    }
 }
