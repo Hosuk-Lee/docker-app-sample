@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Tag(name = "Customer", description = "Customer API")
 public interface MyAccountDetailApi {
 
-//    public OneProvider getDelegate();
-
     /**
      * GET /customer-account-detail
      *
@@ -22,9 +20,9 @@ public interface MyAccountDetailApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "조회 응답"),  })
     @GetMapping(
-            value = "/my-account-detail"
-//            produces = { "application/json" },
-//            consumes = { "application/json" }
+            value = "/my-account-detail",
+            produces = { "application/json" },
+            consumes = { "application/json" }
     )
     public ResponseEntity<MyAccountDetailScheme> myAccountDetail();
 }

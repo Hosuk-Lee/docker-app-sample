@@ -100,9 +100,9 @@
           </execution>
         </executions>
         <configuration>
-<!--          <image>-->
-<!--            <name>project-k-dm-product-directory</name>-->
-<!--          </image>-->
+          <image>
+            <name>hosuk/project-k-dm-product-directory:${project.version}</name>
+          </image>
         </configuration>
       </plugin>
       <plugin>

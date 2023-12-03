@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.20">
+<meta name="author" content="Hosuk Lee">
+<title>Dockerizing Project Develop 문서</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:first-child,.sidebarblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child,.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,td.hdlist1,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article">
+<div id="header">
+<h1>Dockerizing Project Develop 문서</h1>
+<div class="details">
+<span id="author" class="author">Hosuk Lee</span><br>
+<span id="email" class="email"><a href="mailto:hosuk@kbfg.com">hosuk@kbfg.com</a></span><br>
+<span id="revnumber">version 3.0,</span>
+<span id="revdate">July 01, 2023</span>
+<br><span id="revremark">AsciiDoc article template</span>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_1_local_개발환경">1. Local 개발환경</a>
+<ul class="sectlevel2">
+<li><a href="#_1_1_개발_ide">1-1. 개발 IDE</a></li>
+<li><a href="#_1_2_개발_언어_및_도구">1-2. 개발 언어 및 도구</a></li>
+<li><a href="#_1_3_테스트_도구">1-3. 테스트 도구</a></li>
+</ul>
+</li>
+<li><a href="#_2_도커라이징_실습환경">2. 도커라이징 실습환경</a>
+<ul class="sectlevel2">
+<li><a href="#_2_1_spring_msa_아키텍처와_비교">2-1. Spring MSA 아키텍처와 비교</a></li>
+<li><a href="#_2_2_실습결과_docker_실행_확인">2-2. 실습결과 (Docker 실행 확인)</a></li>
+</ul>
+</li>
+<li><a href="#_3_프로젝트_설명">3. 프로젝트 설명</a>
+<ul class="sectlevel2">
+<li><a href="#_3_1_nginx_proxy">3-1. nginx-proxy</a></li>
+<li><a href="#_3_2_front">3-2. front</a></li>
+<li><a href="#_3_3_api_server">3-3. api-server</a></li>
+<li><a href="#_3_4_domain_service">3-4. domain-service</a></li>
+<li><a href="#_3_x_springboot_개발방법">3.X Springboot 개발방법</a></li>
+</ul>
+</li>
+<li><a href="#_4_프로젝트_유틸리티">4. 프로젝트 유틸리티</a>
+<ul class="sectlevel2">
+<li><a href="#_4_1_file_agent">4-1. File Agent</a></li>
+</ul>
+</li>
+<li><a href="#_5_문서">5. 문서</a>
+<ul class="sectlevel2">
+<li><a href="#_5_1_asciidoc">5-1. AsciiDoc</a></li>
+<li><a href="#_5_2_notion">5-2. Notion</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Content entered directly below the header but before the first section heading is called the preamble.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_1_local_개발환경">1. Local 개발환경</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_1_1_개발_ide">1-1. 개발 IDE</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IDE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">설명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DockerFile 및 Vue.js 코드 편집을 위한 통합 개발 환경</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IntelliJ IDEA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java Spring Boot 코드 편집을 위한 강력한 통합 개발 환경</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_1_2_개발_언어_및_도구">1-2. 개발 언어 및 도구</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">언어/도구</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">설명</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Node.js</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Frontend 개발을 위해 사용(npm 패키지 관리, vue 설치)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">학습환경으로 Docker Desktop을 설치하면 자동으로 설치됨</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_1_3_테스트_도구">1-3. 테스트 도구</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Postman
+API 테스트를 위한 Postman 도구가 사용되고 있습니다.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2_도커라이징_실습환경">2. 도커라이징 실습환경</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="DOCKERIZE.png" alt="DOCKERIZE">
+</div>
+</div>
+<div class="olist arabic caption">
+<div class="title">2. 도커 개발환경 구성</div>
+<ol class="arabic">
+<li>
+<p>파란색 선은 개발자의 코드 개발 소스코드 배포, 빌드의 CI/CD 과정을 나타낸 것이다.</p>
+</li>
+<li>
+<p>노란색 선은 개발 시 어플리케이션의 흐름을 표시했다.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>(X)로 2023년 COP에서 학습하지 못함.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_2_1_spring_msa_아키텍처와_비교">2-1. Spring MSA 아키텍처와 비교</h3>
+<div class="imageblock">
+<div class="content">
+<img src="msa.png" alt="msa">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>그림 2와 Spring 에서 소개하는 MSA는 크게 다르지 않음.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_2_2_실습결과_docker_실행_확인">2-2. 실습결과 (Docker 실행 확인)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>실습</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="DOCKER_CONTAINER_1.png" alt="DOCKER CONTAINER 1">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Docker Logs 확인</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="DOCKER_CONTAINER_LOG.png" alt="DOCKER CONTAINER LOG">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_3_프로젝트_설명">3. 프로젝트 설명</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>프로젝트 소스</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/Hosuk-Lee/docker-app-sample.git" class="bare">https://github.com/Hosuk-Lee/docker-app-sample.git</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>docker-app-sample
+├── nginx-proxy
+├── database (h2 or postgresql)
+├── front
+├── api-server
+├── dm-party-reference-data-direcotry
+├── dm-product-directory
+└── dm-savings-account</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_1_nginx_proxy">3-1. nginx-proxy</h3>
+<div class="paragraph">
+<p>이 부분은 Nginx 서버의 가상 호스트 설정 중 하나로, 주로 프록시 서버로의 요청을 다른 서비스로 전달하는 역할을 합니다. 여기에서 주목해야 할 몇 가지 중요한 섹션이 있습니다:</p>
+</div>
+<div class="ulist">
+<div class="title">1 <strong><code>listen 80;</code></strong></div>
+<ul>
+<li>
+<p>포트 80에서 들어오는 요청을 수락합니다. 이는 일반적으로 HTTP 트래픽을 처리하는 데 사용되는 기본 포트입니다.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">2 <strong>프론트엔드 앱에 대한 프록시 설정:</strong></div>
+<ul>
+<li>
+<p><code>/</code> 경로로 들어오는 모든 요청은 `http://docker-front`로 프록시됩니다.</p>
+</li>
+<li>
+<p>`proxy_redirect off;`는 프록시 서버로의 리디렉션을 비활성화합니다.</p>
+</li>
+<li>
+<p>`proxy_set_header`는 프록시 요청에 추가할 HTTP 헤더를 설정합니다. 주로 원본 요청의 정보를 유지하기 위해 사용됩니다.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="nginx">location / {
+    proxy_pass         http://docker-front;
+    proxy_redirect     off;
+    proxy_set_header   Host $host;
+    proxy_set_header   X-Real-IP $remote_addr;
+    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">3 <strong>API 서버에 대한 프록시 설정:</strong></div>
+<ul>
+<li>
+<p><code>/api</code> 경로로 들어오는 요청은 `http://docker-apiserver`로 프록시됩니다.</p>
+</li>
+<li>
+<p><code>rewrite</code> 지시문은 요청에서 <code>/api</code> 부분을 제거하여 내부적으로 다른 경로로 보내는 역할을 합니다.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="nginx">location /api {
+    rewrite ^/api(/.*)$ $1 break; # /api 부분을 제거합니다.
+    proxy_pass         http://docker-apiserver;
+    proxy_redirect     off;
+    proxy_set_header   Host $host;
+    proxy_set_header   X-Real-IP $remote_addr;
+    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>이러한 설정은 Nginx를 사용하여 다양한 경로의 요청을 서로 다른 서비스로 프록시하는 방법을 보여줍니다. 이것은 주로 마이크로서비스 아키텍처 등에서 여러 서비스 간의 요청을 조율하기 위해 사용됩니다.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_2_front">3-2. front</h3>
+<div class="paragraph">
+<div class="title">1 Frontend 프로그램</div>
+<p>Frontend 프로그램은 Vue.js 3를 사용하여 개발되었으며, 백엔드 API와의 통합을 통해 웹 UI를 제공하는 애플리케이션입니다.</p>
+</div>
+<div class="paragraph">
+<div class="title">2 Vue.js 3</div>
+<p>Vue.js 3는 선언적이고 유연한 사용자 인터페이스를 구축하기 위한 JavaScript 프레임워크입니다. 몇 가지 중요한 특징은 다음과 같습니다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>반응성 데이터 바인딩:</strong> Vue.js는 데이터와 DOM 요소 사이의 양방향 바인딩을 통해 데이터의 변화에 따라 자동으로 DOM을 갱신합니다.</p>
+</li>
+<li>
+<p><strong>컴포넌트 기반 아키텍처:</strong> 애플리케이션을 구성하는 작은 컴포넌트들을 조합하여 화면을 구축합니다. 재사용성과 유지보수성을 높이는데 기여합니다.</p>
+</li>
+<li>
+<p><strong>가상 DOM:</strong> 변화가 있는 부분만을 실제 DOM에 적용하여 효율적인 렌더링을 지원합니다.</p>
+</li>
+<li>
+<p><strong>Vue Router 및 Vuex 통합:</strong> 라우팅 및 상태 관리를 위한 Vue Router와 Vuex를 통합하여 복잡한 애플리케이션 상태를 관리할 수 있습니다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">3 CSS 및 부트스트랩</div>
+<p>프론트엔드는 부트스트랩을 사용하여 CSS를 디자인합니다. 부트스트랩은 다음과 같은 주요 기능을 제공합니다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>그리드 시스템:</strong> 유연한 그리드 시스템을 통해 반응형 디자인을 쉽게 구현할 수 있습니다.</p>
+</li>
+<li>
+<p><strong>사전 스타일링된 컴포넌트:</strong> 버튼, 폼 등과 같은 사전 정의된 컴포넌트를 활용하여 일관된 디자인을 유지할 수 있습니다.</p>
+</li>
+<li>
+<p><strong>테마 및 스타일링 옵션:</strong> 다양한 테마와 스타일링 옵션을 통해 디자인을 커스터마이징할 수 있습니다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">4 Axios</div>
+<p>[Axios](<a href="https://axios-http.com/)는" class="bare">https://axios-http.com/)는</a> 프론트엔드에서 API와 통신하기 위한 자바스크립트 HTTP 클라이언트 라이브러리입니다. 주요 기능은 다음과 같습니다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Promise 기반 API:</strong> 비동기 요청을 쉽게 처리할 수 있도록 Promise를 기반으로 한 API를 제공합니다.</p>
+</li>
+<li>
+<p><strong>HTTP 요청 및 응답 처리:</strong> 다양한 HTTP 메서드를 사용하여 서버에 요청을 보내고, 응답을 받아 처리할 수 있습니다.</p>
+</li>
+<li>
+<p><strong>요청/응답 인터셉터:</strong> 요청과 응답을 인터셉트하여 중간에 로직을 추가하거나 수정할 수 있습니다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">5 Vue Router</div>
+<p>[Vue Router](<a href="https://router.vuejs.org/)는" class="bare">https://router.vuejs.org/)는</a> Vue.js에서 사용되는 라우터 라이브러리로, SPA(Single Page Application)에서 페이지 간의 네비게이션을 담당합니다. 주요 기능은 다음과 같습니다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>동적 라우팅:</strong> 동적 라우트 매칭을 통해 동적으로 컴포넌트를 로드하여 페이지를 구성할 수 있습니다.</p>
+</li>
+<li>
+<p><strong>중첩된 라우트:</strong> 중첩된 뷰와 라우트를 사용하여 복잡한 페이지 구조를 구성할 수 있습니다.</p>
+</li>
+<li>
+<p><strong>라우터 가드:</strong> 네비게이션 전/후에 실행되는 라우터 가드를 사용하여 네비게이션을 제어하고 보안을 강화할 수 있습니다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">6 Vite와 npm run dev 명령어</div>
+<p>[Vite](<a href="https://vitejs.dev/)는" class="bare">https://vitejs.dev/)는</a> 빠르고 최신 웹 개발을 위한 빌드 도구로, Vue.js를 비롯한 다양한 프레임워크를 지원합니다. <code>npm run dev</code> 명령어를 통해 로컬 개발 환경을 구축하는데 주로 사용됩니다. 주요 기능은 다음과 같습니다:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>실시간 모듈 리로딩:</strong> 코드 변경 사항을 실시간으로 반영하여 빠른 개발을 지원합니다.</p>
+</li>
+<li>
+<p><strong>ES 모듈 지원:</strong> ES 모듈을 사용하여 빠른 로딩과 최적화된 번들링을 제공합니다.</p>
+</li>
+<li>
+<p><strong>HMR(Hot Module Replacement):</strong> 모듈이 변경되었을 때 전체 페이지를 새로 고치지 않고도 모듈을 교체하여 빠른 개발 사이클을 지원합니다.</p>
+</li>
+<li>
+<p><strong>선택적 Legacy 모드:</strong> 브라우저 호환성을 위해 선택적으로 레거시 모드를 지원합니다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">7 로컬 개발환경 실행</div>
+<p>프론트엔드 프로그램의 로컬 개발환경을 실행하려면 다음 명령어를 사용합니다:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">npm run dev</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">8 설치된 패키지 목록-버전 확인</div>
+<ul>
+<li>
+<p>npm 명령어 : <strong>"npm ls"</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>front@0.0.0 ./docker-app-sample/front
+├── @rushstack/eslint-patch@1.4.0
+├── @vitejs/plugin-vue@4.3.4
+├── @vue/eslint-config-prettier@8.0.0
+├── axios@1.5.1
+├── bootstrap@5.3.2
+├── eslint-plugin-vue@9.17.0
+├── eslint@8.50.0
+├── prettier@3.0.3
+├── vite@4.4.9
+├── vue-router@4.2.5
+├── vue@3.3.4
+└── vuex@4.0.2</code></pre>
+</div>
+</div>
+<div class="ulist">
+<div class="title">9 첨부</div>
+<ul>
+<li>
+<p>고객정보 Page</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="UI_CAPTURE_1.png" alt="UI CAPTURE 1">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_3_api_server">3-3. api-server</h3>
+<div class="paragraph">
+<div class="title">1 기본개념</div>
+<p>실습 프로젝트는 API Gateway 가 없이 구현된 형태입니다.
+간단하게 nginx-proxy가 api-server로 proxy 역할을 담당합니다. 일반적으로 API Gateway 뒤에 있을 때 상황은 아래와 같습니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>UI &#8594; Ingress &#8594; API-Gateway &#8594; API Composition &#8594; Micro Service</p>
+</li>
+<li>
+<p>API Composition 이 하나의 서비스를 제공해주는 Micro Service 가 되는 역할이 됩니다.</p>
+</li>
+<li>
+<p>Facade Pattern 디자인패턴을 알면 도움이 되는데 복잡한 하위 서비스들을 인터페이스 코드로 감싸서 Client 의 역할을 대신해 줍니다.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">2 개발환경</div>
+<ul>
+<li>
+<p>springboot / gradle plugin 을 사용하여 개발</p>
+</li>
+<li>
+<p>image build</p>
+<div class="ulist">
+<ul>
+<li>
+<p>gradle을 통해 localhost에 이미 빌드된 파일이 있으며, openjdk 이미지를 베이스로 실행 이미지를 만든다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="docker"># 기본 이미지 선택 (Java를 사용하는 경우)
+FROM openjdk:17
+
+# 작업 디렉토리 생성
+WORKDIR /app
+
+# Gradle 빌드 결과물을 현재 디렉토리로 복사
+COPY build/libs/*.jar app.jar
+
+# 컨테이너 내부에서 실행할 명령
+CMD [&quot;java&quot;, &quot;-jar&quot;, &quot;app.jar&quot;]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_4_domain_service">3-4. domain-service</h3>
+<div class="ulist">
+<div class="title">1 BIAN 기반의 도메인 서비스 구현</div>
+<ul>
+<li>
+<p>DDD기반 모델링 학습이 목적</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_3_4_1_dm_party_reference_data_direcotry">3-4.1. dm-party-reference-data-direcotry</h4>
+<div class="ulist">
+<div class="title">1 고객정보 서비스</div>
+<ul>
+<li>
+<p>상품이라는 Asset과 Directory라는 Functional 패턴으로 고객정보 데이터를 제공하는 서비스</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">2 개발환경</div>
+<ul>
+<li>
+<p>springboot / gradle plugin 을 사용하여 개발</p>
+</li>
+<li>
+<p>image build</p>
+<div class="ulist">
+<ul>
+<li>
+<p>gradle을 통해 localhost에 이미 빌드된 파일이 있으며, openjdk 이미지를 베이스로 실행 이미지를 만든다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="docker"># 기본 이미지 선택 (Java를 사용하는 경우)
+FROM openjdk:17
+
+# 작업 디렉토리 생성
+WORKDIR /app
+
+# Gradle 빌드 결과물을 현재 디렉토리로 복사
+COPY build/libs/*.jar app.jar
+
+# 컨테이너 내부에서 실행할 명령
+CMD [&quot;java&quot;, &quot;-jar&quot;, &quot;app.jar&quot;]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_3_4_2_dm_product_directory">3-4.2.  dm-product-directory</h4>
+<div class="ulist">
+<div class="title">1 상품정보 서비스</div>
+<ul>
+<li>
+<p>상품이라는 Asset과 Directory Functional 패턴으로 상품정보 데이터를 제공하는 서비스</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">2 개발환경</div>
+<ul>
+<li>
+<p>springboot / gradle plugin 을 사용하여 개발</p>
+</li>
+<li>
+<p>image build</p>
+<div class="ulist">
+<ul>
+<li>
+<p>maven builder image 를 사용하고 생성된 결과물을 openjdk 이미지를 베이스에 복사하여 배포 이미지를 생성.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="docker"># BUILD
+FROM maven:3.9.3-eclipse-temurin-17 AS builder
+WORKDIR /workdir
+# Maven POM 파일 복사
+COPY pom.xml /workdir/pom.xml
+#RUN mvn dependency:go-offline
+# 소스 디렉토리 복사
+COPY src /workdir/src
+RUN mvn install
+
+# IMAGE BUILD
+FROM openjdk:17
+#EXPOSE 8080
+#VOLUME /tmp
+ARG TARGET_DIR=/workdir/target
+COPY --from=builder ${DEPENDENCY}/*.jar app.jar
+CMD [&quot;java&quot;, &quot;-jar&quot;, &quot;app.jar&quot;]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_3_4_3_dm_savings_account">3-4.3.  dm-savings-account</h4>
+<div class="ulist">
+<div class="title">1 저축성 계좌 서비스</div>
+<ul>
+<li>
+<p>저축성 계좌라는 Asset과 Fullfill Functional 패턴으로 저축성 계좌의 서비스를 제공</p>
+</li>
+<li>
+<p>서비스의 제공의 범위는 계좌가 수행되는 모든 기능을 관리함.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>계좌 기본정보, 계좌 입금내역, 이자 지급내역, 세금 정보 등.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">2 개발환경</div>
+<ul>
+<li>
+<p>springboot / gradle plugin 을 사용하여 개발</p>
+</li>
+<li>
+<p>image build</p>
+<div class="ulist">
+<ul>
+<li>
+<p>maven builder image 를 사용하고 생성된 결과물을 openjdk 이미지를 베이스에 복사하여 배포 이미지를 생성.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;plugin&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;version&gt;</span>${spring-boot.version}<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;executions&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;execution&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;goals&gt;</span>
+          <span style="color:#070;font-weight:bold">&lt;goal&gt;</span>build-image<span style="color:#070;font-weight:bold">&lt;/goal&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;/goals&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/execution&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/executions&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;configuration&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;image&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;name&gt;</span>hosuk/project-k-dm-product-directory:${project.version}<span style="color:#070;font-weight:bold">&lt;/name&gt;</span>
+      <span style="color:#070;font-weight:bold">&lt;/image&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/configuration&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/plugin&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="bash">mvnw spring-boot:image-build</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_x_springboot_개발방법">3.X Springboot 개발방법</h3>
+<div class="paragraph">
+<div class="title">1 Java Application 구조 설명</div>
+<p>Spring Boot 애플리케이션의 계층 구조는 일반적으로 비즈니스 로직을 더 잘 구조화하고 관리하기 위해 사용됩니다. 주어진 구조에 대한 간단한 설명은 다음과 같습니다.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="text">apiserver
+├── api
+│   ├── account.v1
+│   │   ├── controller
+│   │   ├── scheme
+│   │   ├── facade
+│   │   └── MyAccountDetailApi
+│   ├── customer.v1
+│   └── product.v1
+├── global
+│   ├── aop
+│   ├── config
+│   ├── advice
+│   ├── interceptor
+│   └── utility
+├── model
+└── service</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>apiserver: API 레이어</p>
+</li>
+<li>
+<p>api: 실제 API 엔드포인트 및 그와 관련된 코드를 포함하는 패키지입니다.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>account.v1: 계정 관련 API 버전 1에 대한 패키지.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>controller 패키지: RESTful API 엔드포인트를 처리하는 컨트롤러 클래스들이 위치하는 패키지입니다. 이 패키지에는 주로 클라이언트의 HTTP 요청을 처리하고 적절한 응답을 생성하는 메서드들이 정의됩니다.</p>
+</li>
+<li>
+<p>scheme 패키지: 계정(Account) API에 사용되는 데이터 모델이나 DTO(Data Transfer Object) 등의 클래스들이 위치하는 패키지입니다.</p>
+</li>
+<li>
+<p>service 패키지: 비즈니스 로직을 처리하는 서비스 클래스들이 위치하는 패키지입니다. 컨트롤러는 주로 HTTP 요청을 처리하고, 그 요청을 서비스 클래스로 전달하여 실제 비즈니스 로직을 실행합니다.</p>
+</li>
+<li>
+<p>MyAccountDetailApi 클래스: 이 클래스는 특정 API 엔드포인트에 대한 처리를 담당하는 클래스의 인터페이스 입니다. Open API와 Swagger를 사용하여 API Document를 생성합니다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>customer.v1: 고객 관련 API 버전 1에 대한 패키지.</p>
+</li>
+<li>
+<p>product.v1: 제품 관련 API 버전 1에 대한 패키지.</p>
+</li>
+<li>
+<p>global: 애플리케이션의 전역 구성 요소를 포함하는 패키지.</p>
+</li>
+<li>
+<p>aop: 관점 지향 프로그래밍 (Aspect-Oriented Programming)과 관련된 코드를 담은 패키지.</p>
+</li>
+<li>
+<p>config: 애플리케이션 설정과 관련된 클래스를 담은 패키지.</p>
+</li>
+<li>
+<p>advice: 컨트롤러에서 발생할 수 있는 예외를 처리하는 어드바이스 클래스를 포함하는 패키지.</p>
+</li>
+<li>
+<p>interceptor: HTTP 요청을 가로채는 인터셉터 클래스를 담은 패키지.</p>
+</li>
+<li>
+<p>utility: 각 계층에서 공통적으로 사용되는 유틸리티 클래스를 포함하는 패키지.</p>
+</li>
+<li>
+<p>model: 데이터 모델 및 엔터티를 정의하는 패키지입니다. 비즈니스 로직에서 사용되는 객체 및 데이터를 포함합니다.</p>
+</li>
+<li>
+<p>domain.service: 도메인 서비스는 일반적으로 특정 도메인 규칙이나 작업이 엔터티에 속하지 않는 경우에 사용됩니다. 예를 들어, 여러 엔터티 간의 트랜잭션을 처리하거나 특정 도메인 연산을 수행하는 데 도움이 됩니다.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">2 database 처리방법</div>
+<p>JPA(Java Persistence API)와 MyBatis는 각각 ORM(Object-Relational Mapping) 기술의 대표적인 구현체입니다. 이 두 기술은 데이터베이스와 Java 객체 간의 매핑을 다루는 방식이 다르기 때문에 프로젝트의 요구사항과 도메인에 따라 선택되기도 합니다.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JPA (Java Persistence API):</p>
+<div class="ulist">
+<ul>
+<li>
+<p>JPA는 자바에서 관계형 데이터베이스와 객체 간의 매핑을 지원하는 API입니다. 대표적인 JPA 구현체로는 Hibernate가 있습니다.</p>
+</li>
+<li>
+<p>JPA는 객체지향적인 데이터 모델과 관계형 데이터베이스 간의 매핑을 자동으로 처리하며, 개발자가 직접 SQL 쿼리를 작성하지 않고도 데이터베이스에 접근할 수 있도록 합니다.</p>
+</li>
+<li>
+<p>주로 객체지향적인 도메인 모델을 사용하는 경우에 JPA를 선택합니다. Spring Data JPA와 같은 프레임워크를 사용하면 더욱 편리하게 JPA를 활용할 수 있습니다.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>MyBatis:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>MyBatis는 SQL 매핑 프레임워크로, 개발자가 SQL 쿼리를 직접 작성하고 매핑을 수동으로 설정합니다. XML이나 어노테이션을 통해 SQL 쿼리와 객체 간의 매핑을 정의합니다.</p>
+</li>
+<li>
+<p>MyBatis는 직접 SQL을 작성하는 유연성을 제공하며, 복잡한 쿼리를 더 세밀하게 제어하고자 할 때 사용됩니다.</p>
+</li>
+<li>
+<p>비교적 간단한 쿼리 또는 기존에 작성된 SQL을 재사용해야 하는 경우에 MyBatis를 사용하는 것이 유용합니다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>따라서 프로젝트의 특성, 개발자의 선호도, 그리고 도메인 모델의 특수한 요구사항에 따라 JPA 또는 MyBatis를 선택할 수 있습니다. 종종 프로젝트에서는 두 기술을 혼용하여 사용하는 경우도 있습니다.</p>
+</div>
+<div class="paragraph">
+<p>표로정리하면 다음과 같습니다.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">특성/기능</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JPA (Hibernate)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MyBatis</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">매핑 방식</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">객체-관계 매핑 (ORM)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SQL 매핑</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SQL 작성 및 매핑</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">자동 생성 및 매핑, 개발자가 직접 작성할 필요가 없음</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">개발자가 SQL 직접 작성하고 매핑을 수동으로 설정</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">복잡한 쿼리 및 조인</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">유연한 객체지향적인 쿼리 작성 가능</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">직접 SQL 작성으로 세밀한 쿼리 제어 가능</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">프로시저 및 함수 호출</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">자동 지원</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XML이나 어노테이션을 통한 매핑</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">성능</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">복잡한 객체 그래프 로딩 등의 이슈가 발생할 수 있음</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">직접 SQL 작성으로 최적화 가능</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">유지보수성 및 생산성</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">높은 생산성, 객체지향적인 코드 작성 가능</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SQL에 대한 직접적인 제어 가능</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">사용자 정의 쿼리와 프로시저</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NamedQuery 등을 사용하여 유연한 쿼리 작성 가능</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">XML이나 어노테이션을 통한 쿼리 정의 가능</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">커뮤니티 및 생태계</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">큰 커뮤니티, 다양한 확장 기능 및 프로젝트 지원</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">확장성 좋음, 커뮤니티 규모는 상대적으로 작음</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<div class="title">3 Microservice Logging</div>
+<p>Microservice Logging 을 위해 Elastic Stack을 연동하는 방법</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Logback를 사용하여 Logstash에 로그를 전송하려면 Logstash Encoder를 사용하여 로그 이벤트를 JSON 형식으로 변환하고, LogstashAppender를 구성하여 이벤트를 Logstash로 전송해야 합니다. 아래는 Logback와 Logstash를 연결하는 간단한 logback.xml 파일의 예제입니다.</p>
+</li>
+<li>
+<p>의존성 추가: 먼저 Maven 또는 Gradle 프로젝트의 의존성에 Logstash Logback Encoder를 추가합니다.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Maven/Gradle</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;dependency&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;groupId&gt;</span>net.logstash.logback<span style="color:#070;font-weight:bold">&lt;/groupId&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;artifactId&gt;</span>logstash-logback-encoder<span style="color:#070;font-weight:bold">&lt;/artifactId&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;version&gt;</span>6.6<span style="color:#070;font-weight:bold">&lt;/version&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/dependency&gt;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="gralde">implementation 'net.logstash.logback:logstash-logback-encoder:6.6'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>logback.xml 구성: 아래는 Logback의 logback.xml 파일에서 Logstash와의 연결을 설정하는 예제입니다.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span style="color:#070;font-weight:bold">&lt;configuration&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;appender</span> <span style="color:#b48">name</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">LOGSTASH</span><span style="color:#710">&quot;</span></span> <span style="color:#b48">class</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">net.logstash.logback.appender.LogstashTcpSocketAppender</span><span style="color:#710">&quot;</span></span><span style="color:#070;font-weight:bold">&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;destination&gt;</span>your-logstash-host:your-logstash-port<span style="color:#070;font-weight:bold">&lt;/destination&gt;</span>
+        <span style="color:#777">&lt;!-- Logstash로 전송할 호스트와 포트를 설정합니다 --&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;encoder</span> <span style="color:#b48">class</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">net.logstash.logback.encoder.LogstashEncoder</span><span style="color:#710">&quot;</span></span> <span style="color:#070;font-weight:bold">/&gt;</span>
+        <span style="color:#777">&lt;!-- Logstash로 전송할 때 사용할 Encoder를 설정합니다 --&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/appender&gt;</span>
+
+    <span style="color:#070;font-weight:bold">&lt;root</span> <span style="color:#b48">level</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">info</span><span style="color:#710">&quot;</span></span><span style="color:#070;font-weight:bold">&gt;</span>
+        <span style="color:#070;font-weight:bold">&lt;appender-ref</span> <span style="color:#b48">ref</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">&quot;</span><span style="color:#D20">LOGSTASH</span><span style="color:#710">&quot;</span></span> <span style="color:#070;font-weight:bold">/&gt;</span>
+        <span style="color:#777">&lt;!-- Root 로그 레벨에서는 LOGSTASH Appender를 참조합니다 --&gt;</span>
+    <span style="color:#070;font-weight:bold">&lt;/root&gt;</span>
+<span style="color:#070;font-weight:bold">&lt;/configuration&gt;</span></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>logstash 와 연동해서 elasticsearch로 forward 하는 프로세스를 수립하면 됨.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">4 도메인서비스 테스트 방법</div>
+<ul>
+<li>
+<p>Java Code 로 API Document 만드는 코드</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="JAVA_API명세.png" alt="JAVA API명세">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Swagger API 첨부</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="JAVA_API_SWAGGER.png" alt="JAVA API SWAGGER">
+</div>
+</div>
+<div class="paragraph">
+<div class="title">5 보안인증/ 미구현</div>
+<p>TODO-LIST</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_4_프로젝트_유틸리티">4. 프로젝트 유틸리티</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_4_1_file_agent">4-1. File Agent</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>프로젝트 소스</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/Hosuk-Lee/k-filetransfer-agent.git" class="bare">https://github.com/Hosuk-Lee/k-filetransfer-agent.git</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Hosuk-Lee/k-filetransfer-server.git" class="bare">https://github.com/Hosuk-Lee/k-filetransfer-server.git</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Hosuk-Lee/k-filetransfer-client.git" class="bare">https://github.com/Hosuk-Lee/k-filetransfer-client.git</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">1 File Agent 개요</div>
+<p>Agent Utility 프로젝트는 빌드 서버인 Jenkins 에서 빌드성공 후 Deploy Server 로 파일 이동을 목적으로 만들어졌습니다.</p>
+</div>
+<div class="paragraph">
+<p>이러한 솔루션의 특징은 시스템간 FTP 프로토콜 사용 불가, 보안 강화에 도움이 됩니다.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="COP_-Agent_Utility.png" alt="COP  Agent Utility">
+</div>
+</div>
+<div class="ulist">
+<div class="title">2 Agent Program 설명</div>
+<ul>
+<li>
+<p>Agent Server</p>
+<div class="ulist">
+<ul>
+<li>
+<p>서버의 메타정보를 관리하는 솔루션 입니다. Agent 에서 Target 서버로 작업이 필요할 때 권한과 정보를 가져옵니다.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Agnet</p>
+<div class="ulist">
+<ul>
+<li>
+<p>운영중인 서버에서 Client 요청을 처리합니다.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>업무 그룹이 맞지 않으면 권한 오류를 발생해야 합니다. (TODO LIST)</p>
+</li>
+<li>
+<p>업로드된 파일을 받아주거나, Bash Shell을 실행(TODO LIST) 하는데 목적이 있습니다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Agnet Client</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Command 명령어로 실행 할 수 있는 프로그램 입니다.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Login (TODO LIST), File Upload, Remote Shell 실행요청 명령어를 실행합니다.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_5_문서">5. 문서</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_5_1_asciidoc">5-1. AsciiDoc</h3>
+<div class="paragraph">
+<p>AsciiDoc은 닥북 XML과 시맨틱적으로 동등하지만 플레인 텍스트 마크업 언어 변환을 사용하는 인간이 읽을 수 있는 문서 포맷입니다.</p>
+</div>
+<div class="ulist">
+<div class="title">1 프로젝트 문서</div>
+<ul>
+<li>
+<p>본 문서는 adoc 파일로 만든 후 컨버팅 후 작성된 문서입니다.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_5_2_notion">5-2. Notion</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>간단한 기술문서 공부한 내용은 노션에 올려서 팀원들간 공유하고 pdf로 추출합니다.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 3.0<br>
+Last updated 2023-12-03 22:16:23 +0900
+</div>
+</div>
+</body>
+</html>
