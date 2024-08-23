@@ -30,23 +30,39 @@ public class CRSavingsAccountFacility extends RootEntityBase {
 
     @Column(
             name = "product_instance_reference",
-            columnDefinition = "VARCHAR(255) COMMENT 'Reference to the savings account product instance'"
+            columnDefinition = "VARCHAR(255) COMMENT '적립식계좌 상품 인스턴스 참조번호'"
     )
     private String productInstanceReference;
 
-    @Column(name = "savings_account_number")
+    @Column(
+            name = "savings_account_number",
+            columnDefinition = "VARCHAR(255) COMMENT '적립식계좌번호'"
+    )
     private String savingsAccountNumber;
 
-    @Column(name = "customer_reference")
+    @Column(
+            name = "customer_reference",
+            columnDefinition = "VARCHAR(255) COMMENT '고객 참조번호'"
+    )
     private String customerReference;
 
-    @Column(name = "bank_branch_location_reference")
+    @Column(
+            name = "bank_branch_location_reference",
+            columnDefinition = "VARCHAR(255) COMMENT '은행 부점 참조번호'"
+    )
     private String bankBranchLocationReference;
 
-    @Column(name = "account_type")
+    @Column(
+            name = "account_type",
+            columnDefinition = "VARCHAR(255) COMMENT '계좌 종류(당좌예금, 학생, 중소기업)'"
+            //The type of savings account (e.g. checking, student, small business)
+    )
     private String accountType;
 
-    @Column(name = "account_currency")
+    @Column(
+            name = "account_currency",
+            columnDefinition = "VARCHAR(3) COMMENT '계좌 통화'"
+    )
     private String accountCurrency;
 
     @Column(name = "tax_reference")
