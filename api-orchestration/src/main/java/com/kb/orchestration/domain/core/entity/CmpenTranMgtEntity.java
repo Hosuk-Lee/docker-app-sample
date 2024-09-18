@@ -1,6 +1,7 @@
 package com.kb.orchestration.domain.core.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,6 +11,7 @@ import lombok.Getter;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.TypeAlias;
 
+@Entity
 @Builder
 @Getter
 @TypeAlias("core:CmpenTranMgt")

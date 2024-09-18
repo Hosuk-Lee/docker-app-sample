@@ -1,22 +1,36 @@
 package com.kb.orchestration.api.accountMgt.controller;
 
 import com.kb.orchestration.domain.core.TransactionManagement;
+import com.kb.orchestration.global.exception.BusinessExcpeion;
+import com.kb.orchestration.global.exception.GErrorCode;
+import com.kb.orchestration.global.exception.GTreatCode;
+import com.kb.orchestration.integration.account.ItgRegistAccountService;
 import java.util.Map;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @AllArgsConstructor
-@RestController("/account-management")
+@RestController("accountMgt_accountMgtController")
+@RequestMapping("/account-management")
 public class AccountMgtController {
 
     private final TransactionManagement transactionManagement;
+    private final ItgRegistAccountService itgRegistAccountService;
 
     @PostMapping("/savings/new")
-    public ResponseEntity<Object> savingsNew(Map<String, Object> body){
-
+    public ResponseEntity<Object> savingsNew(@RequestBody Map<String, Object> body){
+log.info("body {}", body);
+//        if(1==2/2) {
+//            throw new BusinessExcpeion(GErrorCode.SYSTEM_LOCK, GTreatCode.BLANK, "HI");
+//        }
         transactionManagement.regist(body);
+        itgRegistAccountService.excute(body);
         return null;
     }
 

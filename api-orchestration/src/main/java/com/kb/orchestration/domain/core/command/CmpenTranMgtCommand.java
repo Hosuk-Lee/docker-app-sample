@@ -17,7 +17,7 @@ public class CmpenTranMgtCommand {
     public CmpenTranMgtEntity registTransactionInformation(
         RegistTranInfoInDto registTranInfoInDto
     ) {
-
+return null;
     }
 
 }

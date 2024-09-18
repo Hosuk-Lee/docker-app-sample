@@ -29,8 +29,8 @@ public class TransactionManagement {
             .build();
 
         RegistTranInfoInDto input = RegistTranInfoInDto.builder()
-            .guid()
-            .tranTrackLogCtnt()
+//            .guid()
+            .tranTrackLogCtnt(toJson(transactionTrack))
 
             .build();
 
@@ -39,7 +39,7 @@ public class TransactionManagement {
 
     public CmpenTranMgtEntity findByGuid(String guid) {
 
-        return re
+        return null;
     }
 
 

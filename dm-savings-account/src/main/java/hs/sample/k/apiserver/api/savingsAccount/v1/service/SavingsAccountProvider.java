@@ -23,6 +23,10 @@ public class SavingsAccountProvider {
         CRSavingsAccountFacilityFactory factory = CRSavingsAccountFacilityFactory.createFactory(
             input);
         // TODO Factory Class 안에서 검증로직 추가.
+        if ( "jjeongil".equals(input.getSavingsAccountFacility().getLinkType())) {
+            log.info("강제오류");
+            throw new RuntimeException("ASDF");
+        }
         CRSavingsAccountFacility entity = factory.newCRSavingsAccountFacilityEntity();
         entity = repo.save(entity);
         return entity;

@@ -30,6 +30,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="dm-branch-management" target="17" />
       <module name="dm-saving-account" target="17" />
     </bytecodeTargetLevel>
   </component>
