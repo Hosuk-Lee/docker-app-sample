@@ -1,23 +1,14 @@
 package com.kb.orchestration.integration.config;
 
-import com.kb.orchestration.global.config.YamlPropertySourceFactory;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.core.env.MutablePropertySources;
 
 @AllArgsConstructor
 @Configuration
-//@Getter
-//@PropertySource(value = "classpath:integration.yaml", factory = YamlPropertySourceFactory.class)
 @Slf4j
 public class IntegrationConfig {
 

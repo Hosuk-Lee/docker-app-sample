@@ -14,8 +14,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring-boot.version>3.1.4</spring-boot.version>
     <spring-cloud.version>2022.0.3</spring-cloud.version>
-<!--    <spring-boot.version>2.7.7</spring-boot.version>-->
-<!--    <spring-cloud.version>2021.0.8</spring-cloud.version>-->
   </properties>
 
   <dependencies>
@@ -98,6 +96,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
         <configuration>
           <mainClass>hs.sample.k.apiserver.SavingsAccountApplication</mainClass>
           <layout>JAR</layout>

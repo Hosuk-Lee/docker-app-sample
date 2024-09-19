@@ -38,7 +38,7 @@ echo "${env.WORKSPACE}  작업 공간의 절대 경로"
         //             //sh "git clone https://github.com/Hosuk-Lee/k-filetransfer-agent.git"
         //             echo 'Clone..'
                 }
-        //         // git branch: 'master', credentialsId: 'credentail id', url: 'git repo에서 복사한 url'
+        //         // git branch: 'master', credentialsId: 'credentail id', url: 'git repoj에서 복사한 url'
             }
         }
 
