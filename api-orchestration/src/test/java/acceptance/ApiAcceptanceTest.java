@@ -1,4 +1,6 @@
 package acceptance;
 
-public class API_AcceptanceTest {
+
+public class ApiAcceptanceTest {
+
 }
