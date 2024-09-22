@@ -4,6 +4,7 @@ package com.kb.orchestration.domain.core;
 import static com.kb.common.global.utils.CJsonUtils.toJson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kb.common.global.context.CommonContext;
 import com.kb.orchestration.domain.core.command.CmpenTranMgtCommand;
 import com.kb.orchestration.domain.core.command.dto.RegistTranInfoInDto;
 import com.kb.orchestration.domain.core.entity.CmpenTranMgtEntity;
@@ -20,10 +21,11 @@ public class TransactionManagement {
 
     private final ObjectMapper om;
     private final CmpenTranMgtCommand command;
-
+    private final CommonContext commonContext;
 
     public CmpenTranMgtEntity regist(Map<String, Object> body) {
 
+        log.info("CommonContext Test {},{} ", commonContext,commonContext.getGuid());
         TransactionTrack transactionTrack = TransactionTrack.builder()
             .inputData(toJson(body))
             .build();
