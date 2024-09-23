@@ -1,6 +1,5 @@
 package com.kb.common.global.utils.spring;
 
-import com.kb.common.global.context.ApplicationContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;

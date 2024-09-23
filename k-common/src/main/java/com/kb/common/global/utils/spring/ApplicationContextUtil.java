@@ -1,4 +1,4 @@
-package com.kb.common.global.context;
+package com.kb.common.global.utils.spring;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
