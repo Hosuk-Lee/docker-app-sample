@@ -54,3 +54,13 @@ integration:
   product:
     url: http://localhost:9090
     token:
+
+k.common:
+  x-header:
+    base64:
+      encoded:
+        request: false
+        response: false
+    file:
+      enabled: false
+      name: x-k-header-sample.json

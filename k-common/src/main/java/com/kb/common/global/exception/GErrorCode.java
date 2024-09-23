@@ -4,6 +4,7 @@ import com.kb.common.global.exception.IErrorCode;
 
 public enum GErrorCode implements IErrorCode {
 
+    SYSTEM_ERROR("SYSTEM_ERROR", "시스템 오류"),
     SYSTEM_LOCK("SYSTEM_LOCK", "시스템 가동 중지");
 
     private final String code;

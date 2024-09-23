@@ -17,4 +17,9 @@ public class PropsUtil {
         String propValue = getPropValue(k);
         return StringUtils.defaultIfEmpty(propValue, v);
     }
+
+    public static boolean getPropBoolValue(String k) {
+        String p = getPropValue(k);
+        return StringUtils.isEmpty(p) ? false : Boolean.parseBoolean(p);
+    }
 }

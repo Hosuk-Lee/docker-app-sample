@@ -7,6 +7,21 @@ services:
       - "80:80"
     volumes:
       - ./nginx-proxy/nginx.conf:/etc/nginx/nginx.conf
+  mysql-db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: hosuk
+      MYSQL_DATABASE: hosuk
+      MYSQL_USER: hosuk
+      MYSQL_PASSWORD: hosuk
+      TZ: Asia/Seoul
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/config:/etc/mysql/conf.d
+      - ./mysql/init:/docker-entrypoint-initdb.d
   front:
     image: hosuk/project-k-front
     expose:
