@@ -2,6 +2,8 @@ package com.kb.common.global.advice;
 
 import com.kb.common.global.exception.BusinessException;
 import com.kb.common.global.exception.ErrorResponseDto;
+import com.kb.common.global.exception.GErrorCode;
+import com.kb.common.global.exception.GTreatCode;
 import com.kb.common.global.exception.IErrorCode;
 import com.kb.common.global.exception.ITreatCode;
 import jakarta.servlet.ServletRequest;
@@ -30,13 +32,23 @@ public class GlobalExceptionHandler {
 //            , HttpHeaders headers
 //            , HttpStatusCode statusCode
 //            , WebRequest request) {
-    public ResponseEntity<Object> handleBusinessExcpeion(BusinessException ex
+    public ResponseEntity<Object> handleBusinessException(BusinessException ex
             , ServletRequest request) {
-        log.info("ERROR");
+        log.error("ERROR - BusinessException", ex);
         return buildErrorResponse(ex, ex.getMessage(),
                 ex.getErrorCode(),
                 ex.getTreatCode(),
                 HttpStatus.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()), request);
+    }
+
+    @ExceptionHandler({Exception.class})
+    public ResponseEntity<Object> handleException(Exception ex
+        , ServletRequest request) {
+        log.info("ERROR - Exception", ex);
+        return buildErrorResponse(ex, ex.getMessage(),
+            GErrorCode.SYSTEM_ERROR,
+            GTreatCode.SYSTEM_ERROR,
+            HttpStatus.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()), request);
     }
 
     private ResponseEntity<Object> buildErrorResponse(Exception exception,

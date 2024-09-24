@@ -59,11 +59,13 @@ public class ContextInterceptor implements HandlerInterceptor {
     }
 
     private void _setUpCommonContext(HttpServletRequest request) throws JsonProcessingException {
-        Object o = _getHeaderValue(request, XKHeaderEnum.X_K_GUID);
+        Object o = _getHeaderValue(request, XKHeaderEnum.X_K_HEADER);
         // TODO Null 이 아니면 수행토록 / 이도메인은 영영 header 영역과 바이바이
         CommonContextImpl _commonContextImpl = (CommonContextImpl) this.commonContext;
         KHeader _kHeader = o == null ? new KHeader() : objectMapper.readValue((String) o, KHeader.class);
         _commonContextImpl.getkCommon().setkHeader(_kHeader);
+        System.out.println(_commonContextImpl.getStndGuid());
+        System.out.println(commonContext.getStndGuid());
 
     }
 

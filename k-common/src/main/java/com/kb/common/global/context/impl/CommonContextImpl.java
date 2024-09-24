@@ -2,7 +2,6 @@ package com.kb.common.global.context.impl;
 
 import com.kb.common.global.context.CommonContext;
 import com.kb.common.global.context.dto.KCommon;
-import com.kb.common.global.context.dto.KHeader;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import java.util.UUID;
@@ -18,9 +17,7 @@ public class CommonContextImpl implements CommonContext {
 
     private String uuid;
     private String requestURL;
-
     private KCommon kCommon;
-    private KHeader kHeader;
 
     public void setRequestURL(String requestURL) {
         this.requestURL=requestURL;
@@ -32,13 +29,15 @@ public class CommonContextImpl implements CommonContext {
 
     @PostConstruct
     public void init() {
-        uuid = UUID.randomUUID().toString();
-        log.info("request scope bean create uuid = " + uuid);
+        this.uuid = UUID.randomUUID().toString();
+        this.kCommon = new KCommon();
+        log.info("request scope bean create uuid = {}", uuid);
     }
 
     @PreDestroy
     public void close() {
-        log.info("request scope bean destroy uuid = " + uuid);    }
+        log.info("request scope bean destroy uuid = {}", uuid);
+    }
 
     @Override
     public String getGuid() {
@@ -56,12 +55,11 @@ public class CommonContextImpl implements CommonContext {
     }
 
     @Override
-    public String getStngGuid() {
+    public String getStndGuid() {
         return getkCommon().getkHeader().getStndGuid();
     }
 
     public KCommon getkCommon() {
-        if (kCommon == null) return new KCommon();
         return kCommon;
     }
 

@@ -17,10 +17,9 @@ public class ContentCachingFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         ContentCachingRequestWrapper contentCachingRequestWrapper = new ContentCachingRequestWrapper(request);
-        log.info("Filter bf {}", new String(contentCachingRequestWrapper.getContentAsByteArray()));
-
+        log.info("Filter Before {}", new String(contentCachingRequestWrapper.getContentAsByteArray()));
         filterChain.doFilter(contentCachingRequestWrapper, response);
-        log.info("Filter af {}", new String(contentCachingRequestWrapper.getContentAsByteArray()));
+        log.info("Filter After {}", new String(contentCachingRequestWrapper.getContentAsByteArray()));
     }
 
 }

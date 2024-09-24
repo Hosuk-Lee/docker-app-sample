@@ -4,6 +4,7 @@ import com.kb.common.global.exception.ITreatCode;
 
 public enum GTreatCode implements ITreatCode {
 
+    SYSTEM_ERROR("SYSTEM_ERROR", "시스템 오류, IT 담당자 문의"),
     CONFIGURATION("APP_CONFIG_ERROR", "Application 환경설정 오류"),
     BLANK("","");
 

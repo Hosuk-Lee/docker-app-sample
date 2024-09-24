@@ -70,7 +70,7 @@ public class LoggerInterceptor implements HandlerInterceptor {
             Object handler,
             ModelAndView modelAndView) throws Exception {
 
-        log.info("[postHandle][" + request + "]");
+        log.info("[postHandle][{}]", request);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class LoggerInterceptor implements HandlerInterceptor {
         if (ex != null){
             ex.printStackTrace();
         }
-        log.info("[afterCompletion][" + request + "][exception: " + ex + "]");
+        log.info("[afterCompletion][{}][{}][exception: {}]", request, response, ex);
     }
 
 }

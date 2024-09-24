@@ -6,5 +6,5 @@ public interface CommonContext {
     String getTranBaseYmd();
     String getTranBaseHms();
 
-    String getStngGuid();
+    String getStndGuid();
 }
