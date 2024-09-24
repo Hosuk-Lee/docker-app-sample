@@ -1,0 +1,85 @@
+spring.config:
+  active.on-profile: local
+
+#개발로그
+spring.output.ansi.enabled: always
+
+logging.level:
+  com.kb: INFO
+
+spring.security:
+  oauth2:
+    client:
+      provider:
+        default:
+          issuer-uri: "url~"
+          token-uri: "url~"
+          jwt-set-uri: "url~"
+      registration:
+        default:
+          client-id: "client id"
+          clientSecret: "client secret"
+spring.datasource:
+  url: "jdbc:h2:mem:testdb"
+  username: sa
+  password:
+  driver-class-name: org.h2.Driver
+
+spring.jpa:
+  # true Client 에게 응답이 되고 난 후에 DB 커넥션을 반납
+  # false 트랜잭션이 끝났을 때 DB connection 반납
+  open-in-view: false
+  hibernate:
+    ddl-auto: none
+    naming:
+      # 논리적 명명 전략은 암시적 명명 전략(Implicit Naming Strategy)과 명시적 명명 전략(Explicit Naming Strategy)으로 나눌 수 있다
+      implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      physical-strategy: com.kb.common.global.config.jpa.CustomPhysicalNamingStrategy
+  properties:
+    hibernate:
+      show_sql: true
+      format_sql: true
+      highlight_sql: true
+      use_sql_comments: true
+      hbm2ddl.schema-generation.script.append: false
+    jakarta.persistence.schema-generation:
+      create-source: metadata
+      scripts:
+        action: create
+        create-target: database-sample.sql
+spring.sql:
+  init:
+    mode: ALWAYS
+    schema-locations: classpath:schema-h2.sql
+#    data-locations: classpath:data-h2.sql
+
+xHeader:
+  X-K-Header:
+    base64:
+      encoded: # default inbound/outbound base 64 encoding
+        inbound: true # default true
+        outbound: true # default true
+      file:
+        used: true # default header 사용 설정 (default false)
+        name: x-k-header-local.json # file name
+
+springdoc:
+  swagger-ui:
+    oauth:
+      clientId: "abcd"
+
+# 로컬 서버 포트
+server:
+  port: 8080
+  ssl:
+    enabled: false
+  error:
+    include-message: ALWAYS
+    include-stacktrace: ALWAYS
+#  max-http-request-header-size: 64KB
+#  tomcat.maxHttpResponseHeaderSize: 64KB
+
+#third-party:
+#  kafka-client:
+#    enabled: false

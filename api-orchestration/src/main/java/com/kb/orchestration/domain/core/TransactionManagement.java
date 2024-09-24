@@ -1,7 +1,7 @@
 package com.kb.orchestration.domain.core;
 
 
-import static com.kb.common.global.utils.CJsonUtils.toJson;
+import static com.kb.common.global.utils.JsonUtils.toJson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kb.common.global.context.CommonContext;

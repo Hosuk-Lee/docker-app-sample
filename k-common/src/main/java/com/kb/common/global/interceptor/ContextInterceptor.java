@@ -1,11 +1,14 @@
 package com.kb.common.global.interceptor;
 
 import static com.kb.common.global.utils.spring.PropsUtil.*;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kb.common.global.context.CommonContext;
+import com.kb.common.global.context.dto.KHeader;
 import com.kb.common.global.context.impl.CommonContextImpl;
 import com.kb.common.global.exception.BusinessException;
 import com.kb.common.global.exception.GErrorCode;
@@ -20,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
@@ -34,6 +38,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ContextInterceptor implements HandlerInterceptor {
 
     private final CommonContext commonContext;
+    private final ObjectMapper objectMapper;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -46,7 +51,6 @@ public class ContextInterceptor implements HandlerInterceptor {
         if( isNotEmpty(xGuid)) {
             MDC.put("xGuid", xGuid);
         }
-
         _setUpCommonContext(request);
 
 
@@ -54,10 +58,13 @@ public class ContextInterceptor implements HandlerInterceptor {
         return true;
     }
 
-    private void _setUpCommonContext(HttpServletRequest request) {
+    private void _setUpCommonContext(HttpServletRequest request) throws JsonProcessingException {
         Object o = _getHeaderValue(request, XKHeaderEnum.X_K_GUID);
+        // TODO Null 이 아니면 수행토록 / 이도메인은 영영 header 영역과 바이바이
         CommonContextImpl _commonContextImpl = (CommonContextImpl) this.commonContext;
-        // _commonContextImpl.get XKBCommon set xKHeader
+        KHeader _kHeader = o == null ? new KHeader() : objectMapper.readValue((String) o, KHeader.class);
+        _commonContextImpl.getkCommon().setkHeader(_kHeader);
+
     }
 
     private Object _getHeaderValue(HttpServletRequest request, XKHeaderEnum key) {

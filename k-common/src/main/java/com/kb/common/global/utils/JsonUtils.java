@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CJsonUtils {
+public class JsonUtils {
     private static ObjectMapper om = new ObjectMapper();
-    private CJsonUtils() { throw new IllegalStateException("Utility class"); }
+    private JsonUtils() { throw new IllegalStateException("Utility class"); }
 
     public static void logObjectToJson(Object obj) {
         log.info("{} >> {}",

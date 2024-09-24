@@ -1,7 +1,12 @@
 package com.kb.common.global.context.dto;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import java.math.BigDecimal;
+import lombok.Getter;
 
+@Getter
+@JsonNaming(PropertyNamingStrategies.UpperCamelCaseStrategy.class)
 public class KHeader {
 
     /* 시스템 영역 (System Area) */
@@ -11,6 +16,8 @@ public class KHeader {
     private String stndTranCd;  // 10 거래코드 (인터페이스 서비스 이름 (요청된 서비스의 이름이나 식별자))
     private String stndTranBaseYmd;
     private String stndTtl; // 메시지 유효 시간 (초 단위)로, 이 시간이 지나면 메시지가 무효 처리됨
+    private String stndTelgmVsnno; // 전문버전번호
+    private String stndOrgGuid;    // 원거래 GUID
 
     /* 거래 영역 (Transaction Area) */
     private String stndTranType;  // 거래 유형 (등록, 수정, 삭제, 조회 등)
@@ -32,6 +39,7 @@ public class KHeader {
     private String stndIpAddr;  // 요청을 발생시킨 클라이언트의 IP 주소
     private String stndAcesTokn; // 인증된 사용자를 식별하기 위한 토큰 (OAuth, JWT 등 사용)
     private String stndChnlAuthType; // 채널에서 사용하는 인증 방식 (예: OAuth, SAML, API Key 등)
+
 
 
 }

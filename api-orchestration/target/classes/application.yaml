@@ -54,3 +54,30 @@ integration:
   product:
     url: http://localhost:9090
     token:
+
+k.common:
+  service:
+    # 서비스로그 정책 (TODO)
+    log.enabled: false
+    log.type.kafka:
+      enabled: false
+      topic: "k.common.service.log.topic"
+    log.type.db:
+      enabled: false
+      table_name: "TBKSVCLOG"
+    log.type.elastic:
+      enabled: false
+      index_name: "asdf"
+    # 타팀아웃 정책 (TODO)
+    timeout:
+      enabled: false
+      ttl: 60 # sec
+
+  x-header:
+    base64:
+      encoded:
+        request: false
+        response: false
+    file:
+      enabled: false
+      name: x-k-header-sample.json

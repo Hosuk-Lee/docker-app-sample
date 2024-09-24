@@ -1,6 +1,8 @@
 package com.kb.common.global.context.impl;
 
 import com.kb.common.global.context.CommonContext;
+import com.kb.common.global.context.dto.KCommon;
+import com.kb.common.global.context.dto.KHeader;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import java.util.UUID;
@@ -16,6 +18,9 @@ public class CommonContextImpl implements CommonContext {
 
     private String uuid;
     private String requestURL;
+
+    private KCommon kCommon;
+    private KHeader kHeader;
 
     public void setRequestURL(String requestURL) {
         this.requestURL=requestURL;
@@ -49,4 +54,15 @@ public class CommonContextImpl implements CommonContext {
     public String getTranBaseHms() {
         return "";
     }
+
+    @Override
+    public String getStngGuid() {
+        return getkCommon().getkHeader().getStndGuid();
+    }
+
+    public KCommon getkCommon() {
+        if (kCommon == null) return new KCommon();
+        return kCommon;
+    }
+
 }

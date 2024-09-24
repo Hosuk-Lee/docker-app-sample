@@ -1,5 +1,5 @@
 package com.kb.common.global.utils;
 
-public class CUtils {
+public class CustomUtils {
 
 }
