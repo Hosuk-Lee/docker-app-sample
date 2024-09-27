@@ -1,0 +1,49 @@
+:toc:
+Java Option
+
+* JVM Heap 메모리
+. -Xms = -Mmx
+. 메모리 할당 지연이 발생할 경우 JVM Heap 메모리 부족으로 성능 저하 또는 장애가 발생할 수 있음.
+. -Xms, -Xmx 동일한 값으로 설정
+
+* JVM Heap 메모리 New 영역
+. -XX:NewSize 값 = -XX:MaxNewSize 값
+. New 영역 크기가 동적으로 증가할 경우 Memory 영역 재분배, Object 객체 이동 등 내부작업으로 인한 성능 저하 및 장애가 발생할 수 있음.
+. -XX:NewSize, -XX:MaxNewSize 동일한 값으로 설정
+
+* JVM Metaspace 영역 메모리
+. -XX:MetaspaceSize 값 = -XX:MaxMetaspaceSize 값
+. Metaspace 영역 크기가 동적으로 증가할 경우 Object 객체, Class, Method 이동 등 JVM Heap Memory 재배치 작업으로 인한 성능 저하 및 장애가 발생할 수 있음.
+. -XX:MetaspaceSize, -XX:MaxMetaspaceSize 동일한 값으로 설정
+
+* JVM GC 로그파일 생성
+. JVM 옵션에 -Xloggc: 값 존재
+. 성능 저하 또는 메모리 관련 장애 발생 시 GC 로그가 없어서 분석불가
+. -Xloggc 또는 -Xverbosegclog 옵션 설정
+
+* GC Date, Time Logging
+. -XX:+PrintGCDateStamps 와 -XX:+PrintGCTimeStamps 옵션 적용
+. GC event 일자, 시간 정보가 남지않아 장애 시 GC 로그 분석이 어려움
+. -XX:+PrintGCDateStamps 와 -XX:+PrintGCTimeStamps 옵션 설정
+
+* JVM Heap Dump 파일 생성
+. -XX:+HeapDumpOnOutOfMemoryError 값 존재
+. Heap Dump 가 없을경우 OOM(OutOfMemory) Error 원인 분석 불가
+. -XX:+HeapDumpOnOutOfMemoryError 옵션 추가
+
+* JVM Heap Dump 파일 경로
+. -XX:HeapDumpPath=/${Heapdump_PATH} 값 존재
+. Heap Dump 파일 생성 위치를 지정하지 않을 경우 Disk 부족으로 Heap Dump 가 정상적으로 생성되지 않아서 OOM(OutOfMemory) Error에 대한 분석을 할 수 없음
+. -XX:HeapDumpPath=/${Heapdump_PATH} 옵션추가
+
+
+
+* JVM IPv4 활성화
+. -Djava.net.preferIPv4Stack=true 설정
+. OS에서 IPv4와 IPv6을 모두 지원할 경우 Java 에서 IPv6을 우선적으로 사용하게 되므로 Socket 통신 또는 API를 수행할 때 오류 또는 원하지 않은 값 회신, 처리시간 지연 등 문제가 생길 수 있음.
+. IPv4 만 사용하도록 -Djava.net.preferIPv4Stack=true 설정
+
+* JVM 난수 생성 설정
+. -Djava.security.egd=file:///dev/./urandom 옵션 설정
+. /dev/random 을 사용할 경우 난수를 생성할 때 사용하는 시스템 Entropy Pool 을 구성하는 Noise(키보드입력, Disk IO, 마우스 Click 등) 정보가 부족하여 난수 생성에 필요한 Noise 정보를 구성하기 위해 대기하면서 성능 저하가 발생 할 수 잇음.
+. 성능 저하 방지를 위해 -Djava.security.egd=file:///dev/./urandom 옵션 설정

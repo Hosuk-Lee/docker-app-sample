@@ -1,0 +1,28 @@
+:toc:
+시스템 환경
+
+- baremetal
+* high performance 가 요구되는 dbms 와 대량처리가 필요할때 고려
+- vm
+* 일반적으로 사용하여도 무방
+- cloud
+
+
+---
+:toc:
+스토리지
+
+- San Storage
+* 대용량 데이터 처리가 필요한 시스템에서 사용
+- Nas Storage
+* 공유파일 목적으로 속도가 느림 초기 로딩이나 환경파일 용이
+
+---
+:toc:
+pod 산정 (*pod수)
+
+- nginx/vue  : cpu 1, mem 2
+- springboot : cpu 2, mem 4
+- batch      : cpu 4, mem 8
+
+- kafka|broker : cpu 4, mem 16, disk 200

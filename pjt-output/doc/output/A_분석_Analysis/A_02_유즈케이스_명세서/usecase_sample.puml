@@ -1,0 +1,13 @@
+@startuml
+:First Actor:
+:Another\nactor: as Man2
+actor Woman3
+actor :Last actor: as Person1
+
+
+:User: --> (Use)
+"Use the application" as (Use)
+"Main Admin" as Admin
+Admin --> (Admin the application)
+
+@enduml

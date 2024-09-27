@@ -1,0 +1,53 @@
+- hostname
+
+[cols="1,1,1"],options=header]
+|===
+|code|full|description
+|mg|manage|admin
+|mo|monitoring|monitoring dashboard
+|kc|kube control|kubernetes control plane (master)
+|ki|kube infra|kubernetes infra node (worker)
+|kw|kube worker|kubernetes worker node (worker)
+|ap|application|application server
+|db|database|dbms server
+|pi|data pipeline|data pipeline
+|ms|message|message broker
+
+|===
+
+
+// [cols=3*,options=header]
+[cols="1,1,1,1,1,1,1,1,1,2"],options=header]
+|===
+|env|system|name|hostname|os|cpu|memory|ip|storage|comment
+
+|dev|FOO|bastion#1|foomgd01|rhel 8.8|4|16||OS:70GiB,Disk:300GiB,NAS:1000GiB|nas server 용도 및 기타 주석
+|dev|FOO|master#1|fookmd01|coreOS|8|32||OS:200GiB|
+|dev|FOO|master#2|fookmd02|coreOS|8|32||OS:200GiB|
+|dev|FOO|master#3|fookmd03|coreOS|8|32||OS:200GiB|
+|dev|FOO|infra#1|fookid01|coreOS|8|32||OS:200GiB,Disk:300GiB|
+|dev|FOO|infra#2|fookid02|coreOS|8|32||OS:200GiB,Disk:300GiB|
+|dev|FOO|infra#3|fookid03|coreOS|8|32||OS:200GiB,Disk:300GiB|
+|dev|FOO|worker#1|fookwd01|coreOS|8|32||OS:200GiB|
+|dev|FOO|worker#2|fookwd02|coreOS|8|32||OS:200GiB|
+|dev|FOO|worker#3|fookwd03|coreOS|8|32||OS:200GiB|
+
+|dev|FOO|mysql#1|foodbd01|rhel 8.8|4|32||OS:70GiB,1000GiB|write 3306 port
+|dev|FOO|mysql#2|foodbd02|rhel 8.8|4|32||OS:70GiB,1000GiB|readonly 3306 port
+|dev|FOO|mysql#3|foodbd03|rhel 8.8|4|32||OS:70GiB,1000GiB|readonly 3306 port
+
+|dev|FOO|kibana#1|foomgd01|rhel 8.8|4|16||OS:70GiB,30GiB|dashboard 5601 port
+|dev|FOO|logstash#1|foopid01|rhel 8.8|4|16||OS:70GiB,30GiB|data pipeline 22424 port
+|dev|FOO|logstash#1|foopid02|rhel 8.8|4|16||OS:70GiB,30GiB|data pipeline 22424 port
+|dev|FOO|elastic#1|foodbd01|rhel 8.8|4|16||OS:70GiB,30GiB|master node 9200 port
+|dev|FOO|elastic#2|foodbd02|rhel 8.8|4|16||OS:70GiB,30GiB|master node 9200 port
+|dev|FOO|elastic#3|foodbd03|rhel 8.8|4|16||OS:70GiB,30GiB|master node 9200 port
+|dev|FOO|elastic#4|foodbd04|rhel 8.8|4|16||OS:70GiB,300GiB|data node 9200 port
+|dev|FOO|elastic#5|foodbd05|rhel 8.8|4|16||OS:70GiB,300GiB|data node 9200 port
+|dev|FOO|elastic#6|foodbd06|rhel 8.8|4|16||OS:70GiB,300GiB|apm-server 8200 port pipeline (?)
+
+|dev|FOO|grafana#1|foomod01|rhel 8.8|4|16||OS:70GiB,30GiB|metric dashboard
+|dev|FOO|prometheus#1|foodbd01|rhel 8.8|4|16||OS:70GiB,300GiB|metric data
+
+
+|===
