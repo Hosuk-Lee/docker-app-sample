@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mapper DTD 선언 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="productDirectory">
+  <!--  <resultMap type="board" id="boardResult">-->
+  <!--    <id property="seq" column="SEQ"/>-->
+  <!--    <result property="title" column="TITLE"/>-->
+  <!--    <result property="writer" column="WRITER"/>-->
+  <!--    <result property="content" column="CONTENT"/>-->
+  <!--    <result property="regDate" column="REGDATE"/>-->
+  <!--    <result property="cnt" column="CNT"/>-->
+  <!--  </resultMap>-->
+
+  <select id="findPrductDirectory"
+    parameterType="hs.sample.k.apiserver.domain.productDirectory.entity.CRProductDirectory"
+    resultType="hs.sample.k.apiserver.domain.productDirectory.entity.CRProductDirectory">
+    <![CDATA[
+      SELECT * FROM ProductDirectory
+      WHERE product_instance_reference = #{product_instance_reference}
+    ]]>
+  </select>
+</mapper>

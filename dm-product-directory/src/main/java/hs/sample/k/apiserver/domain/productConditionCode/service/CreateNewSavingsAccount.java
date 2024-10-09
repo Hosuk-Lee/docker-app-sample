@@ -1,4 +1,4 @@
-package hs.sample.k.apiserver.domain.productDirectory.service;
+package hs.sample.k.apiserver.domain.productConditionCode.service;
 
 import hs.sample.k.apiserver.domain.productDirectory.entity.CRProductDirectory;
 import hs.sample.k.apiserver.domain.productDirectory.repository.CRSavingsAccountFacilityReposiroty;

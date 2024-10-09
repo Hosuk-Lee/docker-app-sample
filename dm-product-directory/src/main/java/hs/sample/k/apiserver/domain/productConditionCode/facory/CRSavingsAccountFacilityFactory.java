@@ -1,4 +1,4 @@
-package hs.sample.k.apiserver.domain.productDirectory.facory;
+package hs.sample.k.apiserver.domain.productConditionCode.facory;
 
 import hs.sample.k.apiserver.domain.productDirectory.entity.CRProductDirectory;
 import hs.sample.k.apiserver.model.InitiateSavingsAccountFacilityRequest;

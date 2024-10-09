@@ -1,6 +1,6 @@
 package hs.sample.k.apiserver.api.productDirectory.v1.service;
 
-import hs.sample.k.apiserver.domain.productDirectory.entity.CRSavingsAccountFacility;
+import hs.sample.k.apiserver.domain.productDirectory.entity.CRProductDirectory;
 import hs.sample.k.apiserver.domain.productDirectory.facory.CRSavingsAccountFacilityFactory;
 import hs.sample.k.apiserver.domain.productDirectory.repository.CRSavingsAccountFacilityReposiroty;
 import hs.sample.k.apiserver.domain.productDirectory.service.CreateNewSavingsAccount;
@@ -19,17 +19,17 @@ public class SavingsAccountProvider {
     private final CreateNewSavingsAccount createNewSavingsAccount;
     private final CRSavingsAccountFacilityReposiroty repo;
 
-    public CRSavingsAccountFacility createNewSavingsAccount(InitiateSavingsAccountFacilityRequest input){
+    public CRProductDirectory createNewSavingsAccount(InitiateSavingsAccountFacilityRequest input) {
         CRSavingsAccountFacilityFactory factory = CRSavingsAccountFacilityFactory.createFactory(
             input);
         // TODO Factory Class 안에서 검증로직 추가.
-        CRSavingsAccountFacility entity = factory.newCRSavingsAccountFacilityEntity();
+        CRProductDirectory entity = factory.newCRSavingsAccountFacilityEntity();
         entity = repo.save(entity);
         return entity;
     }
 
 
-    public CRSavingsAccountFacility retrieveSavingsAccountFacility(String savingsaccountid) {
+    public CRProductDirectory retrieveSavingsAccountFacility(String savingsaccountid) {
         return repo.findById(Long.valueOf(savingsaccountid)).orElseThrow();
     }
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+  <!-- https://mybatis.org/mybatis-3/ko/configuration.html#settings -->
+  <!-- Mybatis 관련 설정 작성하기 * 아래 순서 중요, 바뀌면 안됨! -->
+
+  <!-- SqlSessionTemplate 관련 설정 -->
+  <settings>
+    <setting name="cacheEnabled" value="false"/>
+    <!-- STATEMENT 로 설정하면 로컬 세션은 구문 실행할때만 사용하고 같은 SqlSession에서 두 개의 다른 호출 사이에는 데이터를 공유하지 않는다-->
+    <setting name="localCacheScope" value="STATEMENT"/>
+    <!-- JDBC타입을 파라미터에 제공하지 않을때 null값을 처리한 JDBC타입을 명시한-->
+    <setting name="jdbcTypeForNull" value="NULL"/>
+    <!-- 전통적인 데이터베이스 칼럼명 형태인 A_COLUMN을 CamelCase형태의 자바 프로퍼티명 형태인 aColumn으로 자동으로 매핑하도록 함	-->
+    <setting name="mapUnderscoreToCamelCase" value="false"/>
+
+    <!--    <setting name="cacheEnabled" value="true"/>-->
+    <!--    <setting name="lazyLoadingEnabled" value="true"/>-->
+    <!--    <setting name="aggressiveLazyLoading" value="true"/>-->
+    <!--    <setting name="multipleResultSetsEnabled" value="true"/>-->
+    <!--    <setting name="useColumnLabel" value="true"/>-->
+    <!--    <setting name="useGeneratedKeys" value="false"/>-->
+    <!--    <setting name="autoMappingBehavior" value="PARTIAL"/>-->
+    <!--    <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>-->
+    <!--    <setting name="defaultExecutorType" value="SIMPLE"/>-->
+    <!--    <setting name="defaultStatementTimeout" value="25"/>-->
+    <!--    <setting name="defaultFetchSize" value="100"/>-->
+    <!--    <setting name="safeRowBoundsEnabled" value="false"/>-->
+    <!--    <setting name="safeResultHandlerEnabled" value="true"/>-->
+    <!--    <setting name="mapUnderscoreToCamelCase" value="false"/>-->
+    <!--    <setting name="localCacheScope" value="SESSION"/>-->
+    <!--    <setting name="jdbcTypeForNull" value="OTHER"/>-->
+    <!--    <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>-->
+    <!--    <setting name="defaultScriptingLanguage"-->
+    <!--      value="org.apache.ibatis.scripting.xmltags.XMLLanguageDriver"/>-->
+    <!--    <setting name="defaultEnumTypeHandler" value="org.apache.ibatis.type.EnumTypeHandler"/>-->
+    <!--    <setting name="callSettersOnNulls" value="false"/>-->
+    <!--    <setting name="returnInstanceForEmptyRow" value="false"/>-->
+    <!--    <setting name="logPrefix" value="exampleLogPreFix_"/>-->
+    <!--    <setting name="logImpl"-->
+    <!--      value="SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING"/>-->
+    <!--    <setting name="proxyFactory" value="CGLIB | JAVASSIST"/>-->
+    <!--    <setting name="vfsImpl" value="org.mybatis.example.YourselfVfsImpl"/>-->
+    <!--    <setting name="useActualParamName" value="true"/>-->
+    <!--    <setting name="configurationFactory" value="org.mybatis.example.ConfigurationFactory"/>-->
+  </settings>
+  <!-- 별칭 작성 부분 -->
+  <!--  <typeAliases>-->
+  <!--    <typeAlias type="edu.kh.comm.member.model.vo.Member" alias="member"/>-->
+  <!--    <typeAlias type="edu.kh.comm.board.model.vo.Board" alias="board"/>-->
+  <!--    <typeAlias type="edu.kh.comm.board.model.vo.BoardDetail" alias="detail"/>-->
+  <!--    <typeAlias type="edu.kh.comm.board.model.vo.BoardImage" alias="boardImage"/>-->
+  <!--    <typeAlias type="edu.kh.comm.board.model.vo.BoardType" alias="boardType"/>-->
+  <!--  </typeAliases>-->
+
+  <!-- SQL이 작성되는 mapper 파일 위치 등록 -->
+  <mappers>
+    <!--
+      <mapper resource=""/>의 작성 기준
+      ->src/main/resources 폴더
+
+     -->
+    <!--    <mapper resource="/mappers/member-mapper.xml"/>-->
+    <!--    <mapper resource="/mappers/myPage-mapper.xml"/>-->
+    <!--    <mapper resource="/mappers/board-mapper.xml"/>-->
+  </mappers>
+
+
+</configuration>

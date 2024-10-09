@@ -1,9 +1,9 @@
 package hs.sample.k.apiserver.api.productDirectory.v1.controller;
 
 
-import hs.sample.k.apiserver.api.productDirectory.v1.service.SavingsAccountProvider;
 import hs.sample.k.apiserver.api.productDirectory.v1.ProductDirectoryApi;
-import hs.sample.k.apiserver.domain.productDirectory.entity.CRSavingsAccountFacility;
+import hs.sample.k.apiserver.api.productDirectory.v1.service.SavingsAccountProvider;
+import hs.sample.k.apiserver.domain.productDirectory.entity.CRProductDirectory;
 import hs.sample.k.apiserver.model.Currencycode;
 import hs.sample.k.apiserver.model.InitiateSavingsAccountFacilityRequest;
 import hs.sample.k.apiserver.model.InitiateSavingsAccountFacilityResponse;
@@ -19,8 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-public class SavingsAccountController implements ProductDirectoryApi
-{
+public class SavingsAccountController implements ProductDirectoryApi {
 
     private final SavingsAccountProvider delegate;
 
@@ -63,7 +62,7 @@ public class SavingsAccountController implements ProductDirectoryApi
     @Override
     public ResponseEntity<RetrieveSavingsAccountFacilityResponse> retrieve(
         String savingsaccountid) {
-        CRSavingsAccountFacility crSavingsAccountFacility = delegate.retrieveSavingsAccountFacility(
+        CRProductDirectory crSavingsAccountFacility = delegate.retrieveSavingsAccountFacility(
             savingsaccountid);
 
         UpdateSavingsAccountFacilityRequestSavingsAccountFacility savingsAccountFacility
@@ -74,7 +73,8 @@ public class SavingsAccountController implements ProductDirectoryApi
             .savingsAccountNumber(crSavingsAccountFacility.getSavingsAccountNumber())
             .accountDetails(crSavingsAccountFacility.getAccountDetails())
             .accountType(crSavingsAccountFacility.getAccountType())
-            .accountCurrency(new Currencycode().currencycode(crSavingsAccountFacility.getAccountCurrency()))
+            .accountCurrency(
+                new Currencycode().currencycode(crSavingsAccountFacility.getAccountCurrency()))
             .taxReference(crSavingsAccountFacility.getTaxReference())
             .entitlementOptionDefinition(crSavingsAccountFacility.getEntitlementOptionDefinition())
             .restrictionOptionDefinition(crSavingsAccountFacility.getRestrictionOptionDefinition())
@@ -90,7 +90,7 @@ public class SavingsAccountController implements ProductDirectoryApi
             .statementPeriod(crSavingsAccountFacility.getStatementPeriod())
             .statementReport(crSavingsAccountFacility.getStatementReport())
 
-            ;
+        ;
 
         RetrieveSavingsAccountFacilityResponse response = new RetrieveSavingsAccountFacilityResponse();
         response.setSavingsAccountFacility(savingsAccountFacility);
