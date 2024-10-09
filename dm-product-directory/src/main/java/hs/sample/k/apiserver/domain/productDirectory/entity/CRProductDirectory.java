@@ -25,9 +25,9 @@ import lombok.NoArgsConstructor;
 @Getter
 public class CRProductDirectory extends RootEntityBase {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
 
     @Column(
         name = "product_instance_reference",

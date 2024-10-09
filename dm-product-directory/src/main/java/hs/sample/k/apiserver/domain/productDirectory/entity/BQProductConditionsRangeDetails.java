@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 @Builder
-@AllArgsConstructor
 @Table(name = "ProductConditionsListDetails")
 @Entity
 @Getter

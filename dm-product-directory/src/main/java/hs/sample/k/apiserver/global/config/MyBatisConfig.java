@@ -14,9 +14,12 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan(basePackageClasses = {
+@MapperScan(
+        value = "hs.sample.k.apiserver.domain"
+)
 
-})
+//(basePackageClasses = {})
+// @EnableTransactionManagement
 public class MyBatisConfig {
 
     private ApplicationContext applicationContext;
@@ -39,7 +42,7 @@ public class MyBatisConfig {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setConfigLocation(
-            applicationContext.getResource("classpath:mybatis-config.xml"));
+            applicationContext.getResource("classpath:mybatis/mybatis-config.xml"));
         sessionFactory.setMapperLocations(resources);
 
         return sessionFactory.getObject();

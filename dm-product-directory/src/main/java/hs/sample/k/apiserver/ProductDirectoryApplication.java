@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SavingsAccountApplication {
+public class ProductDirectoryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SavingsAccountApplication.class, args);
+		SpringApplication.run(ProductDirectoryApplication.class, args);
 	}
 
 }

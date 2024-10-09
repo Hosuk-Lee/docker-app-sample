@@ -27,31 +27,31 @@ public class CRSavingsAccountFacilityFactory {
                 + "03"
                 + "04";
 
-        CRProductDirectory entity =
-            CRProductDirectory.builder()
-                .customerReference(s.getCustomerReference())
-                .bankBranchLocationReference(s.getBankBranchLocationReference())
-                .accountType(s.getAccountType())
-                .accountCurrency(s.getAccountCurrency().getCurrencycode())
-                .taxReference(s.getTaxReference())
-                .entitlementOptionSetting(s.getEntitlementOptionSetting())
-                .restrictionOptionSetting(s.getRestrictionOptionSetting())
-                .associations(s.getAssociations())
-                .associationType(s.getAssociationType())
-                .associationObligationEntitlement(s.getAssociationObligationEntitlement())
-                .associationReference(s.getAssociationReference())
-                .linkedAccounts(s.getLinkedAccounts())
-                .linkType(s.getLinkType())
-                .accountDetails(s.getAccountDetails())
-                .positionLimitSettings(s.getPositionLimitSettings())
-                .dateType(s.getDateType())
-                .statementsSchedule(s.getStatementsSchedule())
-                .statementType(s.getStatementType())
-                .statementTransactionType(s.getStatementTransactionType())
-                .statementPeriod(s.getStatementPeriod())
-                .statementReport(s.getStatementReport())
-                .build();
+//        CRProductDirectory entity =
+//            CRProductDirectory.builder()
+//                .customerReference(s.getCustomerReference())
+//                .bankBranchLocationReference(s.getBankBranchLocationReference())
+//                .accountType(s.getAccountType())
+//                .accountCurrency(s.getAccountCurrency().getCurrencycode())
+//                .taxReference(s.getTaxReference())
+//                .entitlementOptionSetting(s.getEntitlementOptionSetting())
+//                .restrictionOptionSetting(s.getRestrictionOptionSetting())
+//                .associations(s.getAssociations())
+//                .associationType(s.getAssociationType())
+//                .associationObligationEntitlement(s.getAssociationObligationEntitlement())
+//                .associationReference(s.getAssociationReference())
+//                .linkedAccounts(s.getLinkedAccounts())
+//                .linkType(s.getLinkType())
+//                .accountDetails(s.getAccountDetails())
+//                .positionLimitSettings(s.getPositionLimitSettings())
+//                .dateType(s.getDateType())
+//                .statementsSchedule(s.getStatementsSchedule())
+//                .statementType(s.getStatementType())
+//                .statementTransactionType(s.getStatementTransactionType())
+//                .statementPeriod(s.getStatementPeriod())
+//                .statementReport(s.getStatementReport())
+//                .build();
 
-        return entity;
+        return null;
     }
 }

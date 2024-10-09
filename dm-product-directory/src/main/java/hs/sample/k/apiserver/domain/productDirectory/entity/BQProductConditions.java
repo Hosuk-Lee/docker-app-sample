@@ -15,8 +15,7 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 @Builder
-@AllArgsConstructor
-@Table(name = "ProductConditionsListDetails")
+@Table(name = "BQProductConditions")
 @Entity
 @Getter
 public class BQProductConditions extends RootEntityBase {
