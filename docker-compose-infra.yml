@@ -1,5 +1,11 @@
 version: '3.9'
 
+# Default 네트워크인 Bridge
+#networks:
+#  gitea:
+#    external: false
+
+
 services:
   nginx-proxy:
     image: nginx:latest
@@ -22,3 +28,16 @@ services:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/config:/etc/mysql/conf.d
       - ./mysql/init:/docker-entrypoint-initdb.d
+  gitea:
+    image: gitea/gitea:1.22.3
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE=mysql
+      - GITEA__database__HOST=db:3306
+      - GITEA__database__NAME=giteadb
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=gitea
+    depends_on:
+      - mysql-db  # 서비스간의 종속성 순서대로 서비스를 시작
