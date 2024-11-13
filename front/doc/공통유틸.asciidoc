@@ -1,0 +1,18 @@
+= CommonUtil
+
+1. messageBox
+a. confirm, alert, success, warning, error 처리
+2. 날짜
+a. now, before,next,..
+3. component
+a. pdf, excel, ...
+b. form, grid, layout
+
+vscode
+
+npm 실행시 죽을때 package.json
+-- scripts > dev -> --max_old_space_size=4096 head size change
+
+npm repo 내부만 보게
+-- npm config set registry http://ip:port/repository/maven_public/
+
