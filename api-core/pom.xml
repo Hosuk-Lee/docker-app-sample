@@ -31,13 +31,17 @@
       <artifactId>spring-boot-starter-aop</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>io.opentelemetry.instrumentation</groupId>-->
-<!--      <artifactId>opentelemetry-spring-boot-starter</artifactId>-->
-<!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>io.opentelemetry.instrumentation</groupId>-->
+    <!--      <artifactId>opentelemetry-spring-boot-starter</artifactId>-->
+    <!--    </dependency>-->
     <dependency>
       <groupId>io.opentelemetry.instrumentation</groupId>
       <artifactId>opentelemetry-spring-boot-starter</artifactId>
@@ -49,13 +53,13 @@
     </dependency>
 
     <!--    <dependency>-->
-<!--      <groupId>io.opentelemetry</groupId>-->
-<!--      <artifactId>opentelemetry-api</artifactId>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--      <groupId>io.opentelemetry</groupId>-->
-<!--      <artifactId>opentelemetry-sdk</artifactId>-->
-<!--    </dependency>-->
+    <!--      <groupId>io.opentelemetry</groupId>-->
+    <!--      <artifactId>opentelemetry-api</artifactId>-->
+    <!--    </dependency>-->
+    <!--    <dependency>-->
+    <!--      <groupId>io.opentelemetry</groupId>-->
+    <!--      <artifactId>opentelemetry-sdk</artifactId>-->
+    <!--    </dependency>-->
   </dependencies>
 
   <dependencyManagement>
@@ -67,13 +71,13 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-<!--      <dependency>-->
-<!--        <groupId>org.springframework.cloud</groupId>-->
-<!--        <artifactId>spring-cloud-dependencies</artifactId>-->
-<!--        <version>${spring-cloud.version}</version>-->
-<!--        <type>pom</type>-->
-<!--        <scope>import</scope>-->
-<!--      </dependency>-->
+      <!--      <dependency>-->
+      <!--        <groupId>org.springframework.cloud</groupId>-->
+      <!--        <artifactId>spring-cloud-dependencies</artifactId>-->
+      <!--        <version>${spring-cloud.version}</version>-->
+      <!--        <type>pom</type>-->
+      <!--        <scope>import</scope>-->
+      <!--      </dependency>-->
       <dependency>
         <groupId>io.opentelemetry.instrumentation</groupId>
         <artifactId>opentelemetry-instrumentation-bom-alpha</artifactId>
