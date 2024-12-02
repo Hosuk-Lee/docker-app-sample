@@ -1,14 +1,22 @@
 package com.kb.orchestration.domain.core;
 
 
+import static com.kb.common.global.utils.DateUtils.getSysYms20;
 import static com.kb.common.global.utils.JsonUtils.toJson;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kb.common.global.context.CommonContext;
+import com.kb.common.global.exception.BusinessException;
+import com.kb.common.global.exception.GErrorCode;
+import com.kb.common.global.exception.GTreatCode;
 import com.kb.orchestration.domain.core.command.CmpenTranMgtCommand;
 import com.kb.orchestration.domain.core.command.dto.RegistTranInfoInDto;
+import com.kb.orchestration.domain.core.dto.TrxInfoUpdateDto;
 import com.kb.orchestration.domain.core.entity.CmpenTranMgtEntity;
 import com.kb.orchestration.domain.core.entity.TransactionTrack;
+import com.kb.orchestration.domain.core.entity.TransactionTrack.TransactionLog;
 import com.kb.orchestration.domain.core.enums.CTRL_REC_STUS_CD;
 import java.util.Map;
 import java.util.UUID;
@@ -50,20 +58,82 @@ public class TransactionManagement {
                 .build());
     }
 
-    public void addTransactionLog(CmpenTranMgtEntity cmpenTranMgt,
-        TransactionLogReqInfo transactionLogReqInfo,
-        Object reqData, Map<String, Object> cmpenData) {
-        TransactionTrack transactionTrack = null;
-        // cmpenTranMgt.getTranTrackLogCtnt(),
-    }
 
-    public void updateTrxInfo() {
-
+    public void updateTrxInfo(CmpenTranMgtEntity entity, TrxInfoUpdateDto dto) {
+        CmpenTranMgtEntity.CmpenTranMgtEntityBuilder builder = CmpenTranMgtEntity.builder();
+        if (dto.getCtrlRECORDModfiYMS() != null) {
+            builder.ctrlRECORDDmndYMS(dto.getCtrlRECORDDmndYMS());
+        }
+        if (dto.getCtrlRECORDStusCd() != null) {
+            builder.ctrlRECORDStusCd(dto.getCtrlRECORDStusCd());
+        }
+        if (dto.getCtrlRECORDModfiYMS() != null) {
+            builder.ctrlRECORDModfiYMS(dto.getCtrlRECORDModfiYMS());
+        }
+        command.updateTransactionInformation(entity, builder.build());
     }
 
     public CmpenTranMgtEntity findByGuid(String guid) {
+        return command.find(CmpenTranMgtEntity.builder()
+            .guid(guid)
+            .build());
+    }
 
-        return null;
+    public CmpenTranMgtEntity findByTrxId(String trxId) {
+        return command.find(CmpenTranMgtEntity.builder()
+            .cmpenTranIdnfr(trxId)
+            .build());
+    }
+
+    public void startCompensate(CmpenTranMgtEntity e) {
+        command.updateTransactionInformation(e,
+            CmpenTranMgtEntity.builder()
+                .ctrlRECORDModfiYMS(getSysYms20())
+                .ctrlRECORDFnshYMS(EMPTY)
+                .ctrlRECORDStusCd(CTRL_REC_STUS_CD.COMPENSATING.getCode())
+                .build());
+    }
+
+    public void doneCompensate(CmpenTranMgtEntity e) {
+        String sysYms20 = getSysYms20();
+        command.updateTransactionInformation(e,
+            CmpenTranMgtEntity.builder()
+                .ctrlRECORDModfiYMS(sysYms20)
+                .ctrlRECORDFnshYMS(sysYms20)
+                .ctrlRECORDStusCd(CTRL_REC_STUS_CD.COMPENSATED.getCode())
+                .build());
+    }
+
+    private static enum RequestType {
+        RESTApi,
+        Kafka,
+        ETC;
+
+        private RequestType() {
+        }
+    }
+
+    public void addTransactionLog(CmpenTranMgtEntity entity, TransactionLog tranLog) {
+        TransactionTrack transactionTrack;
+        try {
+            transactionTrack = om.readValue(entity.getTranTrackLogCtnt(), TransactionTrack.class);
+        } catch (JsonProcessingException e) {
+            throw new BusinessException(
+                GErrorCode.SYSTEM_ERROR, GTreatCode.SYSTEM_ERROR, "Json Parse Error");
+        }
+        transactionTrack.addTransactionLog(tranLog);
+        command.updateTransactionInformation(entity,
+            CmpenTranMgtEntity.builder()
+                .tranTrackLogCtnt(toJson(transactionTrack))
+                .build());
+    }
+
+    public void saveCompensateResult(CmpenTranMgtEntity e, TransactionTrack transactionTrack) {
+
+        command.updateTransactionInformation(e,
+            CmpenTranMgtEntity.builder()
+                .tranTrackLogCtnt(toJson(transactionTrack))
+                .build());
     }
 
 

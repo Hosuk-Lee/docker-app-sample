@@ -1,0 +1,17 @@
+FROM ubi8/openjdk-17
+WORKDIR /app
+ARG JAR_FILE=*.class
+
+COPY target/si-admin-server-*.jar /app/app.jar
+
+USER root
+RUN chmod -R 777 /var/opt
+
+ENTRYPOINT java -Xms2048m \
+                -Xmx3072m \
+                --add-opens java.base/java.util=ALL-UNNAMED \
+                --add-opens java.base/java.lang=ALL-UNNAMED \
+                -Xlog:gc*:/var/opt/kbds-server-gc-`date -%Y%m%d%H%M%S`.log \
+                -XX:+HeapDumpOnOutOfMemoryError \
+                -XX:HeapDumpPath=/var/opt/heap-dump \
+                -jar app.jar

@@ -18,8 +18,8 @@ public class ItgRegistAccountService {
     private final RestHelper restHelper;
     private final CommonContext commonContext;
 
-    public void excute(Map<String, Object> b){
-        log.info("CommonContext Test {},{} ", commonContext,commonContext.getGuid());
+    public void excute(Map<String, Object> b) {
+        log.info("CommonContext Test {},{} ", commonContext, commonContext.getGuid());
 
         InitiateSavingsAccountFacilityRequestSavingsAccountFacility savingsAccountFacility = new InitiateSavingsAccountFacilityRequestSavingsAccountFacility();
         savingsAccountFacility.setCustomerReference("KB00012345");
@@ -33,8 +33,14 @@ public class ItgRegistAccountService {
         request.setSavingsAccountFacility(savingsAccountFacility);
 
         Map account = restHelper.postCall("account", "/SavingsAccount/Initiate", null, null,
-                request, Map.class);
+            request, Map.class);
         log.info("account {}", account);
+    }
 
+    public void compensate(Map<String, Object> cmpenParam) {
+        Map account = restHelper.postCall("account", "/SavingsAccount/Initiate/Compensate", null,
+            null,
+            request, Map.class);
+        log.info("account {}", account);
     }
 }

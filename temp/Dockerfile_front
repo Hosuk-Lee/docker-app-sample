@@ -1,0 +1,9 @@
+FROM ubi8/nginx-122:1-42
+
+USER root
+COPY ./dist/stage/ /opt/app-root/src/KBDS
+COPY ./docker/index.html /opt/app-root/src
+
+RUN chmod -R 775 /opt/app-root/src
+
+CMD ["nginx", "-g", "daemon off;"]

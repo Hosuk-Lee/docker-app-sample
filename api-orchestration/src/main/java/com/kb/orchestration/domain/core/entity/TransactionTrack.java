@@ -42,9 +42,13 @@ public class TransactionTrack {
             this.sequence = sequence;
         }
 
+        public void updateCompensateResult(boolean compensateResult) {
+            this.compensateResult = compensateResult;
+            this.compensateRetryCount++;
+        }
     }
 
-    public  enum RequestType {
+    public enum RequestType {
         RESTApi,
         Kafka,
         ETC;

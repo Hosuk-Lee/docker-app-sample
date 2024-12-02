@@ -13,13 +13,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * Fulfill any scheduled and ad-hoc obligations under a service arrangement, most typically for a financial product or facility within Savings Account.
- * 일반적으로 저축 계좌 내의 금융 상품이나 시설에 대한 서비스 계약에 따라 예정된 특별한 의무를 이행해야 합니다.
+ * Fulfill any scheduled and ad-hoc obligations under a service arrangement, most typically for a
+ * financial product or facility within Savings Account. 일반적으로 저축 계좌 내의 금융 상품이나 시설에 대한 서비스 계약에 따라
+ * 예정된 특별한 의무를 이행해야 합니다.
  */
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-@Table(name = "SavingsAccountFacility")
+@Table(name = "SavingsAccountFacility") // NFAFUB101
 @Entity
 @Getter
 public class CRSavingsAccountFacility extends RootEntityBase {
@@ -29,8 +30,8 @@ public class CRSavingsAccountFacility extends RootEntityBase {
     private Long id;
 
     @Column(
-            name = "product_instance_reference",
-            columnDefinition = "VARCHAR(255) COMMENT 'Reference to the savings account product instance'"
+        name = "product_instance_reference",
+        columnDefinition = "VARCHAR(255) COMMENT 'Reference to the savings account product instance'"
     )
     private String productInstanceReference;
 
