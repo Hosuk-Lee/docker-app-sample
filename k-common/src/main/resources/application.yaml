@@ -1,2 +1,5 @@
 # 안읽히는듯
 server.port: 11111
+
+error:
+  printStackTrace: "true"

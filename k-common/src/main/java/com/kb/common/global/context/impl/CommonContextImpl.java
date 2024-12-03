@@ -6,13 +6,11 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+//@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class CommonContextImpl implements CommonContext {
 
     private String uuid;
@@ -20,11 +18,11 @@ public class CommonContextImpl implements CommonContext {
     private KCommon kCommon;
 
     public void setRequestURL(String requestURL) {
-        this.requestURL=requestURL;
+        this.requestURL = requestURL;
     }
 
     public void log(String message) {
-        log.info("["+uuid+"]"+"["+requestURL+"]"+ message);
+        log.info("[" + uuid + "]" + "[" + requestURL + "]" + message);
     }
 
     @PostConstruct

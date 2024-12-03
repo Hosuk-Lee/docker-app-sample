@@ -22,23 +22,25 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     public static final String TRACE = "trace";
-    @Value("${error.printStackTrace}")
+    @Value("${error.printStackTrace:true}")
     private boolean printStackTrace;
-    public GlobalExceptionHandler(){
+
+    public GlobalExceptionHandler() {
 
     }
+
     @ExceptionHandler({BusinessException.class})
 //    public ResponseEntity<Object> handle(Exception ex, Object body
 //            , HttpHeaders headers
 //            , HttpStatusCode statusCode
 //            , WebRequest request) {
     public ResponseEntity<Object> handleBusinessException(BusinessException ex
-            , ServletRequest request) {
+        , ServletRequest request) {
         log.error("ERROR - BusinessException", ex);
         return buildErrorResponse(ex, ex.getMessage(),
-                ex.getErrorCode(),
-                ex.getTreatCode(),
-                HttpStatus.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()), request);
+            ex.getErrorCode(),
+            ex.getTreatCode(),
+            HttpStatus.valueOf(HttpStatus.INTERNAL_SERVER_ERROR.value()), request);
     }
 
     @ExceptionHandler({Exception.class})
@@ -52,14 +54,15 @@ public class GlobalExceptionHandler {
     }
 
     private ResponseEntity<Object> buildErrorResponse(Exception exception,
-            String message,
-            IErrorCode errorCode,
-            ITreatCode treatCode,
-            HttpStatus httpStatus,
+        String message,
+        IErrorCode errorCode,
+        ITreatCode treatCode,
+        HttpStatus httpStatus,
 //            WebRequest request) {
-            ServletRequest request){
+        ServletRequest request) {
         ErrorResponseDto errorResponseDto =
-            new ErrorResponseDto(httpStatus.value(), message, LocalDateTime.now(), errorCode, treatCode);
+            new ErrorResponseDto(httpStatus.value(), message, LocalDateTime.now(), errorCode,
+                treatCode);
         if (printStackTrace && isTraceOn(request)) {
             errorResponseDto.setStackTrace(ExceptionUtils.getStackTrace(exception));
         }
@@ -70,8 +73,8 @@ public class GlobalExceptionHandler {
     private boolean isTraceOn(ServletRequest request) {
         String[] value = request.getParameterValues(TRACE);
         return Objects.nonNull(value)
-                && value.length > 0
-                && value[0].contentEquals("true");
+            && value.length > 0
+            && value[0].contentEquals("true");
     }
 
 }

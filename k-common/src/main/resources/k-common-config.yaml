@@ -1,3 +1,7 @@
 k.project:
   author: "hosuk.lee"
   email: "hosuk1497@gmail.com"
+
+
+error:
+  printStackTrace: "true"

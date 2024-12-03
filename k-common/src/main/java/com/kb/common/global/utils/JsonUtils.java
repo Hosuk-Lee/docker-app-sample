@@ -6,8 +6,12 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class JsonUtils {
+
     private static ObjectMapper om = new ObjectMapper();
-    private JsonUtils() { throw new IllegalStateException("Utility class"); }
+
+    private JsonUtils() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static void logObjectToJson(Object obj) {
         log.info("{} >> {}",
@@ -17,9 +21,10 @@ public class JsonUtils {
 
     public static String toJson(Object obj) {
         try {
-            om.writeValueAsString(obj);
+            return om.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            log.error(e.getMessage());
+            // throw new RuntimeException(e);
         }
         return "";
     }

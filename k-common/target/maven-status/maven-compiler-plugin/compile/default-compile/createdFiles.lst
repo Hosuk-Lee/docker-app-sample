@@ -1,4 +1,5 @@
 com/kb/common/global/exception/ErrorResponseDto$ErrorResponseDtoBuilder.class
+com/kb/common/global/transaction/SagaOriginRecord.class
 com/kb/common/global/advice/JpaRepositoryFindAdvice.class
 com/kb/common/global/context/dto/KCommon.class
 com/kb/common/global/context/dto/KHeader.class
@@ -10,10 +11,12 @@ com/kb/common/global/config/jpa/CustomPhysicalNamingStrategy.class
 com/kb/common/global/exception/BusinessException.class
 com/kb/common/global/interceptor/enums/XKHeaderEnum.class
 com/kb/common/global/advice/GlobalExceptionHandler.class
+com/kb/common/global/utils/DateUtils.class
 com/kb/common/global/utils/spring/PropsUtil.class
 com/kb/common/global/exception/CErrorCode.class
 com/kb/common/global/utils/FileUtils.class
 com/kb/common/global/config/restTemplate/CustomResponseErrorHandler.class
+com/kb/common/global/transaction/SagaOriginRecord$CUDFlag.class
 com/kb/common/global/exception/ITreatCode.class
 com/kb/common/license/LicenceSample.class
 com/kb/common/global/exception/CErrorCode$CErrorCodeBuilder.class
