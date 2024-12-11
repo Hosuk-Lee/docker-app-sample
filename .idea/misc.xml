@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/api-orchestration/pom.xml" />
         <option value="$PROJECT_DIR$/dm-branch-management/pom.xml" />
         <option value="$PROJECT_DIR$/k-common/pom.xml" />
+        <option value="$PROJECT_DIR$/k-support/pom.xml" />
       </list>
     </option>
   </component>

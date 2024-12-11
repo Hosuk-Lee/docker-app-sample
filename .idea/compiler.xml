@@ -19,6 +19,7 @@
         <module name="dm-product-directory" />
         <module name="dm-savings-account" />
         <module name="api-core" />
+        <module name="k-support" />
         <module name="api-orchestration" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
