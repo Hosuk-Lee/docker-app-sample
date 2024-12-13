@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/dm-branch-management/pom.xml" />
         <option value="$PROJECT_DIR$/k-common/pom.xml" />
         <option value="$PROJECT_DIR$/k-support/pom.xml" />
+        <option value="$PROJECT_DIR$/k-batch/pom.xml" />
       </list>
     </option>
   </component>

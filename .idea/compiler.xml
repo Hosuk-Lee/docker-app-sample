@@ -15,12 +15,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="k-common" />
-        <module name="dm-product-directory" />
         <module name="dm-savings-account" />
         <module name="api-core" />
-        <module name="k-support" />
         <module name="api-orchestration" />
+        <module name="k-common" />
+        <module name="dm-product-directory" />
+        <module name="k-support" />
+        <module name="k-batch" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />

@@ -26,10 +26,10 @@ public class DevUtilController {
 //        log.info("body {}", body);
         StopWatch stopWatch = StopWatch.createStarted();
         long start = System.currentTimeMillis();
-        int o = (int) body.get("loop_count");
-        int x = 0;
-        for (int i = 0; i < o; i++) {
-            x++;
+        try {
+            Thread.sleep(1_000L);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
