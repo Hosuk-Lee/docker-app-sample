@@ -1,0 +1,25 @@
+= Component
+
+1. InputBox
+a. 금액 > [999,999.00]
+b. 이율,확률 > [99.99%]
+c. 문자
+d. 날짜 > [YYYY/MM/DD][달력]
+e. 시간 > [HH:MM:SS] 시,분,초
+2. Calendar
+a. now, before,next,..
+3. Combo
+a. pdf, excel, ...
+b. form, grid, layout
+4. Spin
+5. Radio
+6. CheckBox
+
+vscode
+
+npm 실행시 죽을때 package.json
+-- scripts > dev -> --max_old_space_size=4096 head size change
+
+npm repo 내부만 보게
+-- npm config set registry http://ip:port/repository/maven_public/
+
