@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleException(Exception ex
         , ServletRequest request) {
-        log.info("ERROR - Exception", ex);
+        log.error("ERROR - Exception {}", ex.getMessage(), ex);
         return buildErrorResponse(ex, ex.getMessage(),
             GErrorCode.SYSTEM_ERROR,
             GTreatCode.SYSTEM_ERROR,

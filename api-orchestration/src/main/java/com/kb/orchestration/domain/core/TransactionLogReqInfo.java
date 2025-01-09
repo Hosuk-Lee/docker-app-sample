@@ -8,5 +8,5 @@ public interface TransactionLogReqInfo {
 
     public String getMethodName();
 
-    public Boolean isCmpenYn();
+    public Boolean getCmpenYn();
 }

@@ -40,7 +40,7 @@ public class ItgRegistAccountService {
     public void compensate(Map<String, Object> cmpenParam) {
         Map account = restHelper.postCall("account", "/SavingsAccount/Initiate/Compensate", null,
             null,
-            request, Map.class);
+            cmpenParam, Map.class);
         log.info("account {}", account);
     }
 }

@@ -59,7 +59,7 @@ public class NewSavingsAcctSvc {
             .requestData(toJson(reqData))
             .compensateBeanName(tran.getBeanName())
             .compensateMethodName(tran.getMethodName())
-            .compensateTargetYn(tran.isCmpenYn())
+            .compensateTargetYn(tran.getCmpenYn())
             .compensateParamValue(cmpenData)
             .build();
         tranMgt.addTransactionLog(entity, tranLog);
@@ -76,7 +76,7 @@ public class NewSavingsAcctSvc {
         private final String callName;
         private final String beanName;
         private final String methodName;
-        private final boolean cmpenYn;
+        private final Boolean cmpenYn;
 
     }
 }

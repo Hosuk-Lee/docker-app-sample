@@ -1,7 +1,0 @@
-integration:
-  account:
-    url: http://localhost:9090
-    token:
-  product:
-    url: http://localhost:9090
-    token:

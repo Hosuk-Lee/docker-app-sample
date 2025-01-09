@@ -44,8 +44,9 @@ public class TranMgtController {
     @PostMapping
     // @RequestParam(name = "bean-name") String paramBeanName
     public ResponseEntity<String> compensate() {
-        String beanName;
-        Object participant = ApplicationContextUtil.getBean(beanName);
+//        String beanName;
+//        Object participant = ApplicationContextUtil.getBean(beanName);
+        return ResponseEntity.ok("compensated");
     }
 
     /**
