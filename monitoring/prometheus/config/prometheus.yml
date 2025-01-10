@@ -21,3 +21,9 @@ scrape_configs:
     scrape_interval: 10s
     static_configs:
       - targets: [ "docker.for.mac.localhost:8082" ]
+
+  - job_name: "domain-savingsAccount"
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: [ "docker.for.mac.localhost:19000" ]

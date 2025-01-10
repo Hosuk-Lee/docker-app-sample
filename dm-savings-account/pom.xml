@@ -109,7 +109,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot.version}</version>
         <configuration>
-          <mainClass>hs.sample.k.savings.SavingsAccountApplication</mainClass>
+          <mainClass>com.kb.sample.savings.SavingsAccountApplication</mainClass>
           <layout>JAR</layout>
         </configuration>
         <executions>

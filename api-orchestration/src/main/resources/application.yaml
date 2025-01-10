@@ -10,6 +10,8 @@ spring.resources.add-mappings: false # Disable default resource handling.
 
 
 spring:
+  application:
+    name: api-orchestration
   # H2 Setting Info (H2 Console에 접속하기 위한 설정정보 입력)
   h2:
     console:
@@ -30,7 +32,9 @@ management:
     web.base-path: /management # actuator 기본 경로 변경 (보안)
     #    web.exposure.include: "health,info,env,metrics,prometheus"
     web.exposure.include: prometheus
-
+  metrics:
+    tags:
+      application=${spring.application.name}:
   server:
     port: 8082 # http://localhost:8082/actuator (port 8080 -> 8082)
   endpoint:

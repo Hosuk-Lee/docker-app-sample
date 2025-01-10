@@ -1,10 +1,9 @@
 package com.kb.orchestration.global.config.rdbms;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import org.springframework.data.annotation.Id;
 
 //@Setter
 //@Getter
@@ -15,7 +14,7 @@ public abstract class IdentityBaseEntity
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본키 생성을 DB에 위임
-    @Column(name = "ID")
+//    @Column(name = "ID")
     private Long id;
 
     @Override
